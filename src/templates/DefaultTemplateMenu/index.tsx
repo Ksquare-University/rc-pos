@@ -4,8 +4,7 @@ import { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import HomeIcon from '@mui/icons-material/Home';
+import HomeIcon from "@mui/icons-material/Home";
 
 import {
   Box,
@@ -19,6 +18,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -52,7 +52,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function DefaultTemplateMenu({ children }: Props) {
-  const theme = useTheme();
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -62,7 +62,9 @@ export default function DefaultTemplateMenu({ children }: Props) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  const handleDrawerButtonClick = (e: React.SyntheticEvent) => {
+    navigate(`/${e.currentTarget.id}`);
+  };
   return (
     <Box>
       <Toolbar>
@@ -71,7 +73,7 @@ export default function DefaultTemplateMenu({ children }: Props) {
           onClick={handleDrawerOpen}
           sx={{ ...(open && { display: "none" }) }}
         >
-          <MenuIcon/>
+          <MenuIcon sx={{ fontSize: "40px" }} />
         </IconButton>
       </Toolbar>
       <Main open={open}>{children}</Main>
@@ -87,20 +89,27 @@ export default function DefaultTemplateMenu({ children }: Props) {
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
+            <ChevronLeftIcon sx={{ fontSize: "40px" }} />
           </IconButton>
         </DrawerHeader>
         <Divider />
         <List>
           {["Home", "Orders"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
+            <ListItem
+              key={text}
+              disablePadding
+              sx={{ marginBottom: "2vh", marginTop: "2vh" }}
+            >
+              <ListItemButton
+                id={text === "Home" ? "home" : "orders"}
+                onClick={handleDrawerButtonClick}
+              >
                 <ListItemIcon>
-                  {index % 2 === 0 ? <HomeIcon /> : <ReceiptLongIcon />}
+                  {index % 2 === 0 ? (
+                    <HomeIcon sx={{ fontSize: "35px" }} />
+                  ) : (
+                    <ReceiptLongIcon sx={{ fontSize: "35px" }} />
+                  )}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
