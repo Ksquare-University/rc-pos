@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
 import ButtonControl from "../../components/Button";
 import DefaultTemplateMenu from "../../templates/DefaultTemplateMenu";
 import "./style.css";
 import images from "../../assets/gif.gif";
 import {Timer} from "../../components/Timer";
 
-function Welcome() {
+const Welcome = () => {
   return (
     <div className="container">
       <DefaultTemplateMenu>
