@@ -36,11 +36,16 @@ const Login: React.FC = () => {
 
     if (inputs.email.length > 4 && inputs.password.length > 7)
       console.log(inputs);
-    navigate('/orders');
+    navigate('/home');
   };
 
   useEffect(() => {
-    document.body.style.backgroundColor = '#fe473c';
+    document.body.style.backgroundColor = '#fe4730';
+    document.body.style.display = 'flex';
+    document.body.style.placeItems = 'center';
+    document.body.style.justifyContent = 'center';
+    document.body.style.minWidth = '100vw';
+    document.body.style.minHeight = '100vh';
   }, []);
 
   return (
