@@ -1,4 +1,5 @@
 import { SyntheticEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
@@ -17,7 +18,6 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 
