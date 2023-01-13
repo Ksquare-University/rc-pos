@@ -1,13 +1,18 @@
 import { Box, Button } from '@mui/material';
 
-const OrderSummary = ({ orderId, active }) => {
+interface Props {
+  orderId: number;
+  active: boolean;
+}
+
+const OrderSummary = ({ orderId, active }: Props) => {
   return (
     <div>
       <Button
         sx={{
           alignItems: 'flex-start',
           width: '97%',
-          backgroundColor: '#fe473c',
+          backgroundColor: '#fe4730',
           borderRadius: '8px',
           color: '#fff',
           display: 'flex',

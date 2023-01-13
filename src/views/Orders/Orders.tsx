@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, Tab, Typography } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
+import DefaultTemplateMenu from '../../templates/DefaultTemplateMenu';
 
 const Orders: React.FC = () => {
   const [tab, setTab] = useState('1');
@@ -12,11 +13,16 @@ const Orders: React.FC = () => {
 
   useEffect(() => {
     document.body.style.backgroundColor = '#f0f0f0';
-    document.body.style.color = '#fe473c';
+    document.body.style.color = '#fe4730';
+    document.body.style.display = 'flex';
+    document.body.style.placeItems = 'center';
+    document.body.style.justifyContent = 'center';
+    document.body.style.minWidth = '100vw';
+    document.body.style.minHeight = '100vh';
   }, []);
 
   return (
-    <div>
+    <DefaultTemplateMenu>
       <Typography fontFamily={'Quicksand'} textAlign='center' variant='h3'>
         Orders
       </Typography>
@@ -24,7 +30,7 @@ const Orders: React.FC = () => {
       <TabContext value={tab}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList
-            TabIndicatorProps={{ style: { background: '#fe473c' } }}
+            TabIndicatorProps={{ style: { background: '#fe4730' } }}
             onChange={handleTabChange}
             textColor='inherit'
             aria-label='Orders tabs'
@@ -68,7 +74,7 @@ const Orders: React.FC = () => {
           <OrderSummary orderId={9811} active={false} />
         </TabPanel>
       </TabContext>
-    </div>
+    </DefaultTemplateMenu>
   );
 };
 
