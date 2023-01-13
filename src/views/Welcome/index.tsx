@@ -4,31 +4,8 @@ import DefaultTemplateMenu from "../../templates/DefaultTemplateMenu";
 import "./style.css";
 import images from "../../assets/gif.gif";
 import {Timer} from "../../components/Timer";
-import hamburger from "../../assets/hamburger.png";
-import pizza from "../../assets/pizza.png"
-import poke from "../../assets/poke.png"
-
-//const images = [hamburger, pizza, poke];
 
 function Welcome() {
-/*     const [index,setIndex] = useState(0);
-
-    setInterval(function(){
-     
-        index === 3 ? setIndex(0) : setIndex(index + 1) ;
-    
-     }, 5000);
- */
-  /* const [isDisabled, setSate] = useState(false);
-
-   const handleChange = () => {
-    if ()) {
-      setSate(false);
-    } else {
-      setSate(true);
-    }
-  }; */
-
   return (
     <div className="container">
       <DefaultTemplateMenu>

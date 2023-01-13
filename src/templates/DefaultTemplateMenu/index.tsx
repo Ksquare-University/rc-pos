@@ -1,5 +1,5 @@
 import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -18,7 +18,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
