@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    height: 100vh;
+    height:100ex;
     background-image: url("../../assets/BackgroundFood.png");
     background-color:rgba(254, 71, 48, 1);
 }

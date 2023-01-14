@@ -5,6 +5,7 @@ import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import HomeIcon from "@mui/icons-material/Home";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import {
   Box,
@@ -94,27 +95,42 @@ export default function DefaultTemplateMenu({ children }: Props) {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Home", "Orders"].map((text, index) => (
-            <ListItem
-              key={text}
-              disablePadding
-              sx={{ marginBottom: "2vh", marginTop: "2vh" }}
-            >
-              <ListItemButton
-                id={text === "Home" ? "home" : "orders"}
-                onClick={handleDrawerButtonClick}
-              >
-                <ListItemIcon>
-                  {index % 2 === 0 ? (
-                    <HomeIcon sx={{ fontSize: "35px" }} />
-                  ) : (
-                    <ReceiptLongIcon sx={{ fontSize: "35px" }} />
-                  )}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          <ListItem
+            disablePadding
+            sx={{ marginBottom: "2vh", marginTop: "2vh" }}
+          >
+            <ListItemButton id="home" onClick={handleDrawerButtonClick}>
+              <ListItemIcon>
+                <HomeIcon sx={{ fontSize: "35px" }} />
+              </ListItemIcon>
+              <ListItemText primary={"Home"} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            disablePadding
+            sx={{ marginBottom: "2vh", marginTop: "2vh" }}
+          >
+            <ListItemButton id="orders" onClick={handleDrawerButtonClick}>
+              <ListItemIcon>
+                <ReceiptLongIcon sx={{ fontSize: "35px" }} />
+              </ListItemIcon>
+              <ListItemText primary={"Orders"} />
+            </ListItemButton>
+          </ListItem>
+        </List>
+        <List 
+        sx={{marginTop: "auto"}}>
+        <ListItem
+            disablePadding
+            sx={{ marginBottom: "2vh", marginTop: "2vh"}}
+          >
+            <ListItemButton id="logout" onClick={handleDrawerButtonClick}>
+              <ListItemIcon>
+                <LogoutIcon sx={{ fontSize: "35px" }} />
+              </ListItemIcon>
+              <ListItemText primary={"login"} />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Drawer>
     </Box>
