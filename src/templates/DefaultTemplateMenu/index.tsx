@@ -20,6 +20,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import CustomModal from "../../components/CustomModal";
 
 const drawerWidth = 240;
 
@@ -55,6 +56,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function DefaultTemplateMenu({ children }: Props) {
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
+  const [openModal, setOpenModal] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -124,7 +126,7 @@ export default function DefaultTemplateMenu({ children }: Props) {
             disablePadding
             sx={{ marginBottom: "2vh", marginTop: "2vh"}}
           >
-            <ListItemButton id="login" onClick={handleDrawerButtonClick}>
+            <ListItemButton id="logout" onClick={() => setOpenModal(true)}>
               <ListItemIcon>
                 <LogoutIcon sx={{ fontSize: "35px" }} />
               </ListItemIcon>
@@ -132,6 +134,7 @@ export default function DefaultTemplateMenu({ children }: Props) {
             </ListItemButton>
           </ListItem>
         </List>
+        <CustomModal open={openModal} setOpen={setOpenModal} />
       </Drawer>
     </Box>
   );

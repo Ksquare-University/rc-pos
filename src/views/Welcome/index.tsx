@@ -1,4 +1,4 @@
-import ButtonControl from "../../components/Button";
+import ButtonControl from "../../components/ButtonControl";
 import DefaultTemplateMenu from "../../templates/DefaultTemplateMenu";
 import "./style.css";
 import images from "../../assets/gif.gif";
