@@ -124,11 +124,11 @@ export default function DefaultTemplateMenu({ children }: Props) {
             disablePadding
             sx={{ marginBottom: "2vh", marginTop: "2vh"}}
           >
-            <ListItemButton id="logout" onClick={handleDrawerButtonClick}>
+            <ListItemButton id="login" onClick={handleDrawerButtonClick}>
               <ListItemIcon>
                 <LogoutIcon sx={{ fontSize: "35px" }} />
               </ListItemIcon>
-              <ListItemText primary={"login"} />
+              <ListItemText primary={"Log Out"} />
             </ListItemButton>
           </ListItem>
         </List>
