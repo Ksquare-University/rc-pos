@@ -46,7 +46,6 @@ img {
     height: 250px;
     width: 250px;
     object-fit: scale-down;
-    /* transform: scale(.5); */
 }
 
 img.inactive {
