@@ -1,13 +1,12 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Timer } from '../../components/Timer';
 import ButtonControl from '../../components/ButtonControl';
 import DefaultTemplateMenu from '../../templates/DefaultTemplateMenu';
-import './style.css';
-import images from '../../assets/gif.gif';
-import { Timer } from '../../components/Timer';
-import { useNavigate } from 'react-router-dom';
 import hamburger from '../../assets/hamburger.png';
 import pizza from '../../assets/pizza.png';
 import poke from '../../assets/poke.png';
-import { useEffect, useRef, useState } from 'react';
+import './style.css';
 
 const imgs = [hamburger, pizza, poke];
 
@@ -54,7 +53,6 @@ const Welcome = () => {
           />
           <h2>The restaurant must open in :</h2>
           <div className='timer'>
-            {' '}
             <Timer />
           </div>
         </div>

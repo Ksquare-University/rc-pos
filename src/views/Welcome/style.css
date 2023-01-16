@@ -5,36 +5,36 @@
     background-color: rgba(254, 71, 48, 1);
 }
 
-.buttonRestaurant:active {
+.container .buttonRestaurant:active {
     background-color: rgba(254, 71, 48, 1);
 }
 
-.buttonRestaurant {
+.container .buttonRestaurant {
     background-color: white !important;
     color: black !important;
     width: 50% !important;
 }
 
-.buttonRestaurant:hover {
+.container .buttonRestaurant:hover {
     background-color: rgb(213, 180, 180) !important;
     color: black !important;
 }
 
-.welcome {
+.container .welcome {
     text-align: center;
     transition: all 0.5s;
     flex-direction: column;
     margin-top: 5%;
 }
 
-h1 {
+.container .welcome h1 {
     font-size: 3.2em;
     line-height: 1.1;
     color: rgb(255, 255, 255);
 }
 
 
-h2 {
+.container .welcome h2 {
     padding-top: 4% !important;
     font-size: 1.3em;
     line-height: 1.1;
@@ -42,18 +42,18 @@ h2 {
 }
 
 
-img {
+.container .welcome img {
     height: 250px;
     width: 250px;
     object-fit: scale-down;
 }
 
-img.inactive {
+.container .welcome img.inactive {
     animation: zoom-out 1.5s ease;
     transform: scale(.5);
 }
 
-img.active {
+.container .welcome img.active {
     animation: zoom-in 1.5s ease;
     transform: scale(1);
 }

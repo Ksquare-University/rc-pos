@@ -1,12 +1,11 @@
-import * as React from "react";
-import { Box } from "@mui/material";
-import Modal from "@mui/material/Modal";
-import ButtonControl from "../ButtonControl";
-import CancelIcon from "@mui/icons-material/Cancel";
-import LogoutIcon from "@mui/icons-material/Logout";
-import { useNavigate } from "react-router-dom";
-import InfoIcon from "@mui/icons-material/Info";
-import "./style.css";
+import { Box } from '@mui/material';
+import Modal from '@mui/material/Modal';
+import ButtonControl from '../ButtonControl';
+import CancelIcon from '@mui/icons-material/Cancel';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useNavigate } from 'react-router-dom';
+import InfoIcon from '@mui/icons-material/Info';
+import './style.css';
 
 interface Props {
   open: boolean;
@@ -19,7 +18,7 @@ const CustomModal = ({ open, setOpen }: Props) => {
   const navigate = useNavigate();
 
   const handleOpenButton = () => {
-    navigate("/login");
+    navigate('/login');
   };
   return (
     <div>
@@ -28,19 +27,19 @@ const CustomModal = ({ open, setOpen }: Props) => {
           <div className='modal-content'>
             <h3> Are you sure you want to log-out?</h3>
             <h5>
-              <InfoIcon sx={{ fontSize: "14px" }}/>
+              <InfoIcon sx={{ fontSize: '14px' }} />
               By logging out your restaurant will close
             </h5>
-            <div className="buttons">
+            <div className='buttons'>
               <ButtonControl
-                nameClass="button"
-                label="Cancel"
+                nameClass='button'
+                label='Cancel'
                 Icon={CancelIcon}
                 handleClick={handleClose}
               />
               <ButtonControl
-                nameClass="button"
-                label="log Out"
+                nameClass='button'
+                label='log Out'
                 Icon={LogoutIcon}
                 handleClick={handleOpenButton}
               />
