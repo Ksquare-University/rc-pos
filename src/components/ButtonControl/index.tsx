@@ -8,7 +8,7 @@ interface Props {
   nameClass?: string;
 }
 
-function ButtonControl(props: Props) {
+const ButtonControl = (props: Props) => {
   const { label, Icon, handleClick, nameClass } = props;
 
   return (
@@ -16,6 +16,6 @@ function ButtonControl(props: Props) {
       {Icon ? <Icon sx={{ paddingRight: '5px' }} /> : ''} {label}
     </Button>
   );
-}
+};
 
 export default ButtonControl;
