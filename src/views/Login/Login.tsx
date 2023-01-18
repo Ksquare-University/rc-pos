@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Button,
@@ -39,17 +39,15 @@ const Login: React.FC = () => {
     navigate('/home');
   };
 
-  useEffect(() => {
-    document.body.style.backgroundColor = '#fe4730';
-    document.body.style.display = 'flex';
-    document.body.style.placeItems = 'center';
-    document.body.style.justifyContent = 'center';
-    document.body.style.minWidth = '100vw';
-    document.body.style.minHeight = '100vh';
-  }, []);
-
   return (
-    <div>
+    <Box
+      bgcolor='#fe4730'
+      display='flex'
+      alignItems='center'
+      justifyContent='center'
+      width='100vw'
+      minHeight='100vh'
+    >
       <form onSubmit={handleFormSubmit}>
         <Box
           bgcolor={'#f0f0f0'}
@@ -162,7 +160,7 @@ const Login: React.FC = () => {
           </Button>
         </Box>
       </form>
-    </div>
+    </Box>
   );
 };
 
