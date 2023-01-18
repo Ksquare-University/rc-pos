@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Tab, Typography } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import OrderSummary from '../../components/OrderSummary/OrderSummary';
+import OrderSummary from '../../components/OrderSummary';
 import DefaultTemplateMenu from '../../templates/DefaultTemplateMenu';
 
 const Orders: React.FC = () => {
