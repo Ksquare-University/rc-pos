@@ -2,12 +2,15 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import { useNavigate } from 'react-router-dom';
+import { SyntheticEvent, useState } from 'react';
+
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CustomModal from '../../components/LogOutModal';
+
 import {
   Box,
   Toolbar,
@@ -20,7 +23,6 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
-
 
 const drawerWidth = 240;
 
@@ -65,12 +67,14 @@ const DefaultTemplateMenu = ({ children }: Props) => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const handleDrawerButtonClick = (e: React.SyntheticEvent) => {
+
+  const handleDrawerButtonClick = (e: SyntheticEvent) => {
     navigate(`/${e.currentTarget.id}`);
   };
+
   return (
     <Box>
-      <Toolbar>
+      <Toolbar disableGutters>
         <IconButton
           color='inherit'
           onClick={handleDrawerOpen}

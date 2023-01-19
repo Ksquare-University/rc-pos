@@ -87,10 +87,11 @@ const Welcome = () => {
         return newVal;
       });
     }, 1000);
+
   };
 
   return (
-    <div className="container">
+    <div className='container'>
       <DefaultTemplateMenu>
         <div className="welcome">
           <img src={imgs[currentImg]} alt="loading..." className={imgClass} />
@@ -107,6 +108,7 @@ const Welcome = () => {
             disabled={buttonActive !== "active"}
             handleClick={handleOpenButton}
           />
+
           <h2>The restaurant must open in :</h2>
           <div className="timer">
             {Object.entries({
