@@ -1,0 +1,13 @@
+.Active.MuiButton-root {
+    width: 350px;
+    height: 110px;
+    background-color: #ff7864;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: "Open sans";
+    text-transform: capitalize;
+}
+
+.Active.MuiButton-root:hover {
+    background: #f74024;
+}

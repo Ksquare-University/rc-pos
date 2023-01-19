@@ -1,0 +1,32 @@
+.Container {
+    border: 5px solid #f24726;
+    width: 80em;
+}
+
+.Container>header {
+    border: 3px solid white;
+    width: 99.5%;
+    height: 15%;
+    background-color: #f24726;
+    display: flex;
+}
+
+.Container>header>div {
+    width: calc(100% / 3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.Container>header>div>p {
+    margin: 0;
+    margin-left: 1em;
+    font-weight: bold;
+}
+
+.Container>main {
+    border-top: 5px solid #f24726;
+    width: 100%;
+    height: 84%;
+    overflow-y: scroll;
+}

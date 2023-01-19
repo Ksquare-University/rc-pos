@@ -1,0 +1,23 @@
+.SendBttn.MuiButton-root {
+    width: 5rem;
+    height: 3rem;
+    background-color: #ff7864;
+    color: white;
+    width: 11.5rem;
+    height: 4rem;
+    border-radius: 32px;
+    font-family: "Open sans";
+    font-size: 1.8rem;
+    text-transform: capitalize;
+    margin-top: 5rem;
+}
+
+.SendBttn.MuiButton-root:hover {
+    background: #f74024;
+    color: white;
+}
+
+.SendBttn.MuiButton-root:disabled {
+    background-color: #bdbdbd;
+    color: white;
+}
