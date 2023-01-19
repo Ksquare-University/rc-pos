@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Button,
@@ -11,6 +11,8 @@ import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 import { useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase/config';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -31,25 +33,32 @@ const Login: React.FC = () => {
     setPassVisibility((prevState) => !prevState);
   };
 
-  const handleFormSubmit = (e: React.FormEvent<EventTarget>) => {
+  const handleFormSubmit = async (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
 
-    if (inputs.email.length > 4 && inputs.password.length > 7)
+    if (inputs.email.length > 4 && inputs.password.length > 6) {
+      const user = await signInWithEmailAndPassword(
+        auth,
+        inputs.email,
+        inputs.password
+      );
+
+      console.log(user);
+      console.log(await user.user.getIdToken());
       console.log(inputs);
-    navigate('/home');
+      navigate('/home');
+    }
   };
 
-  useEffect(() => {
-    document.body.style.backgroundColor = '#fe4730';
-    document.body.style.display = 'flex';
-    document.body.style.placeItems = 'center';
-    document.body.style.justifyContent = 'center';
-    document.body.style.minWidth = '100vw';
-    document.body.style.minHeight = '100vh';
-  }, []);
-
   return (
-    <div>
+    <Box
+      bgcolor='#fe4730'
+      display='flex'
+      alignItems='center'
+      justifyContent='center'
+      width='100vw'
+      minHeight='100vh'
+    >
       <form onSubmit={handleFormSubmit}>
         <Box
           bgcolor={'#f0f0f0'}
@@ -162,7 +171,7 @@ const Login: React.FC = () => {
           </Button>
         </Box>
       </form>
-    </div>
+    </Box>
   );
 };
 

@@ -9,5 +9,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <DataContextProvider>
       <App />
     </DataContextProvider>
-  </React.StrictMode >,
+  </React.StrictMode >
 )

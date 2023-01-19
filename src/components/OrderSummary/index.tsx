@@ -1,11 +1,24 @@
 import { Box, Button } from '@mui/material';
 
 interface Props {
-  orderId: number;
   active: boolean;
+  clientAddress: string;
+  clientName: string;
+  courierName: string;
+  orderDate: string;
+  orderId: number;
+  orderStatus: string;
 }
 
-const OrderSummary = ({ orderId, active }: Props) => {
+const OrderSummary = ({
+  active,
+  clientAddress,
+  clientName,
+  courierName,
+  orderDate,
+  orderId,
+  orderStatus,
+}: Props) => {
   return (
     <div>
       <Button
@@ -32,11 +45,11 @@ const OrderSummary = ({ orderId, active }: Props) => {
           </Box>
 
           <Box>
-            <strong>Client:</strong> Jonathan Castillo
+            <strong>Client:</strong> {clientName}
           </Box>
 
           <Box>
-            <strong>Courier:</strong> Gabriel Osorno
+            <strong>Courier:</strong> {courierName}
           </Box>
         </Box>
 
@@ -51,12 +64,12 @@ const OrderSummary = ({ orderId, active }: Props) => {
               justifyContent: 'space-between',
             }}
           >
-            <strong>12 Jan, 01:13 p.m.</strong>
-            <strong>Pending</strong>
+            <strong>{orderDate}</strong>
+            <strong>{orderStatus}</strong>
           </Box>
 
           <Box>
-            <strong>Address:</strong> C 38 # 283 X 38 Y 21, PENSIONES
+            <strong>Address:</strong> {clientAddress}
           </Box>
         </Box>
       </Button>
