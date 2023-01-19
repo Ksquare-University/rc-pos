@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { StateI } from '../../store/slices';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateTimer } from '../../store/slices/timer';
-import ButtonControl from '../../components/ButtonControl';
-import DefaultTemplateMenu from '../../templates/DefaultTemplateMenu';
-import hamburger from '../../assets/hamburger.png';
-import pizza from '../../assets/pizza.png';
-import poke from '../../assets/poke.png';
-import './style.css';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { StateI } from "../../store/slices";
+import { useDispatch, useSelector } from "react-redux";
+import { updateTimer } from "../../store/slices/timer";
+import ButtonControl from "../../components/ButtonControl";
+import DefaultTemplateMenu from "../../templates/DefaultTemplateMenu";
+import hamburger from "../../assets/hamburger.png";
+import pizza from "../../assets/pizza.png";
+import poke from "../../assets/poke.png";
+import "./style.css";
 
 const imgs = [hamburger, pizza, poke];
 
@@ -17,23 +17,34 @@ const Welcome = () => {
   const dispatch = useDispatch();
 
   const [currentImg, setCurrentImg] = useState(0);
-  const [imgClass, setImgClass] = useState('');
+  const [imgClass, setImgClass] = useState("");
 
   const [restaurants, setRestaurants] = useState<any>(null);
   const [restaurantsB, setRestaurantsB] = useState<any>(0);
 
-  const [buttonActive, setButtonActive] = useState<string>('');
+  const [buttonActive, setButtonActive] = useState<string>("");
 
   const timer1 = useSelector<StateI>((state) => state.timer.openTime) as Date;
   const timer2 = useSelector<StateI>((state) => state.timer.closeTime) as Date;
-  let currentHour = new Date().getHours() * 60 + new Date().getMinutes();
+
+  let OpenTimerTime = Number.parseInt(timer1.toLocaleTimeString("en-US"));
+  let CloseTimerTime = Number.parseInt(timer2.toLocaleTimeString("en-US"));
+
+  let currentHour = Number.parseInt(new Date().toLocaleTimeString("en-US"));
+
   let openingHour = timer1.getHours() * 60 + timer1.getMinutes();
   let closingHour = timer2.getHours() * 60 + timer2.getMinutes();
 
+  let distance = openingHour - currentHour;
+
+  let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      if (currentHour > openingHour && currentHour < closingHour) {
-        setButtonActive('active');
+      if (currentHour >= 10 && currentHour <= 10) {
+        setButtonActive("active");
       }
     }, 1000);
 
@@ -41,8 +52,8 @@ const Welcome = () => {
   }, []);
 
   const handleOpenButton = () => {
-    if (buttonActive !== 'active') return;
-    navigate('/orders');
+    if (buttonActive !== "active") return;
+    navigate("/orders");
   };
 
   useEffect(() => {
@@ -50,15 +61,15 @@ const Welcome = () => {
   }, [restaurantsB]);
 
   const loadRestaurants = async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users');
-    console.log('res>', response);
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    console.log("res>", response);
     const data = await response.json();
-    console.log('data>', data);
+    console.log("data>", data);
     setRestaurants(data);
   };
 
   useEffect(() => {
-    setImgClass('active');
+    setImgClass("active");
     const timer = setTimeout(() => {
       zoomOut();
     }, 3000);
@@ -69,7 +80,7 @@ const Welcome = () => {
   }, [currentImg]);
 
   const zoomOut = () => {
-    setImgClass('inactive');
+    setImgClass("inactive");
     setTimeout(() => {
       setCurrentImg((prevVal) => {
         const newVal = prevVal >= imgs.length - 1 ? 0 : prevVal + 1;
@@ -79,10 +90,10 @@ const Welcome = () => {
   };
 
   return (
-    <div className='container'>
+    <div className="container">
       <DefaultTemplateMenu>
-        <div className='welcome'>
-          <img src={imgs[currentImg]} alt='loading...' className={imgClass} />
+        <div className="welcome">
+          <img src={imgs[currentImg]} alt="loading..." className={imgClass} />
           <h1>Welcome, Restaurant name </h1>
 
           {/*  {restaurants.map((restaurant: any) => (
@@ -91,23 +102,23 @@ const Welcome = () => {
             </div>
           ))}  */}
           <ButtonControl
-            nameClass={'buttonRestaurant ' + buttonActive}
-            label={'Open Restaurant'}
-            disabled={buttonActive !== 'active'}
+            nameClass={"buttonRestaurant " + buttonActive}
+            label={"Open Restaurant"}
+            disabled={buttonActive !== "active"}
             handleClick={handleOpenButton}
           />
           <h2>The restaurant must open in :</h2>
-          <div className='timer'>
-              {Object.entries({
-                Hours: openingHour % 24,
-                Minutes: openingHour % 60,
-                Seconds: openingHour % 60,
-              }).map(([label, value]) => (
-                <div className='box'>
-                  <p>{`${Math.floor(value)}`.padStart(2, '0')}</p>
-                  <span className='text'>{label}</span>
-                </div>
-              ))}
+          <div className="timer">
+            {Object.entries({
+              Hours: hours,
+              Minutes: minutes,
+              Seconds: seconds,
+            }).map(([label, value]) => (
+              <div className="box">
+                <p>{`${Math.floor(value)}`.padStart(2, "0")}</p>
+                <span className="text">{label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </DefaultTemplateMenu>
