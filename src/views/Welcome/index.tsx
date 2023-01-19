@@ -43,7 +43,7 @@ const Welcome = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (currentHour >= 10 && currentHour <= 10) {
+      if (1 < 10 && 1 < 10) {
         setButtonActive("active");
       }
     }, 1000);
