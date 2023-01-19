@@ -1,35 +1,12 @@
-import { useEffect, useMemo, useState } from "react";
-import "./style.css";
+import { useEffect, useMemo, useState } from 'react';
+import './style.css';
 
-const SECOND = 1000;
-const MINUTE = SECOND * 60;
-const HOUR = MINUTE * 60;
+export const Timer = () => {
 
-export const Timer = ({ deadline = new Date().toString() }) => {
-    const parsedDeadline = useMemo(() => Date.parse(deadline), [deadline]);
-    const [time, setTime] = useState(parsedDeadline - Date.now());
 
-    useEffect(() => {
-        const interval = setInterval(
-            () => setTime(parsedDeadline - Date.now()),
-            1000,
-        );
-
-        return () => clearInterval(interval);
-    }, []);
-
-    return (
-        <div className="timer">
-            {Object.entries({
-                Hours: (time / HOUR) % 24,
-                Minutes: (time / MINUTE) % 60,
-                Seconds: (time / SECOND) % 60,
-            }).map(([label, value]) => (
-                    <div className="box">
-                        <p>{`${Math.floor(value)}`.padStart(2, "0")}</p>
-                        <span className="text">{label}</span>
-                    </div>
-            ))}
-        </div>
-    );
+  return (
+    <div className='timer'>
+      
+    </div>
+  );
 };
