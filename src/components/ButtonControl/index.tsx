@@ -6,13 +6,19 @@ interface Props {
   Icon?: React.ElementType;
   handleClick?: () => void;
   nameClass?: string;
+  disabled?: boolean;
 }
 
 const ButtonControl = (props: Props) => {
-  const { label, Icon, handleClick, nameClass } = props;
+  const { label, Icon, handleClick, nameClass, disabled = false } = props;
 
   return (
-    <Button variant='contained' className={nameClass} onClick={handleClick}>
+    <Button
+      disabled={disabled}
+      variant='contained'
+      className={nameClass}
+      onClick={handleClick}
+    >
       {Icon ? <Icon sx={{ paddingRight: '5px' }} /> : ''} {label}
     </Button>
   );
