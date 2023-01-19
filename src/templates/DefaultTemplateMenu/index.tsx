@@ -1,11 +1,16 @@
-import { SyntheticEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import { useNavigate } from 'react-router-dom';
+import { SyntheticEvent, useState } from 'react';
+
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import HomeIcon from '@mui/icons-material/Home';
+import LogoutIcon from '@mui/icons-material/Logout';
+import CustomModal from '../../components/LogOutModal';
+
 import {
   Box,
   Toolbar,
@@ -52,7 +57,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 const DefaultTemplateMenu = ({ children }: Props) => {
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [openModal, setOpenModal] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -95,28 +101,43 @@ const DefaultTemplateMenu = ({ children }: Props) => {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Home', 'Orders'].map((text, index) => (
-            <ListItem
-              key={text}
-              disablePadding
-              sx={{ marginBottom: '2vh', marginTop: '2vh' }}
-            >
-              <ListItemButton
-                id={text === 'Home' ? 'home' : 'orders'}
-                onClick={handleDrawerButtonClick}
-              >
-                <ListItemIcon>
-                  {index % 2 === 0 ? (
-                    <HomeIcon sx={{ fontSize: '35px' }} />
-                  ) : (
-                    <ReceiptLongIcon sx={{ fontSize: '35px' }} />
-                  )}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          <ListItem
+            disablePadding
+            sx={{ marginBottom: '2vh', marginTop: '2vh' }}
+          >
+            <ListItemButton id='home' onClick={handleDrawerButtonClick}>
+              <ListItemIcon>
+                <HomeIcon sx={{ fontSize: '35px' }} />
+              </ListItemIcon>
+              <ListItemText primary={'Home'} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            disablePadding
+            sx={{ marginBottom: '2vh', marginTop: '2vh' }}
+          >
+            <ListItemButton id='orders' onClick={handleDrawerButtonClick}>
+              <ListItemIcon>
+                <ReceiptLongIcon sx={{ fontSize: '35px' }} />
+              </ListItemIcon>
+              <ListItemText primary={'Orders'} />
+            </ListItemButton>
+          </ListItem>
         </List>
+        <List sx={{ marginTop: 'auto' }}>
+          <ListItem
+            disablePadding
+            sx={{ marginBottom: '2vh', marginTop: '2vh' }}
+          >
+            <ListItemButton id='logout' onClick={() => setOpenModal(true)}>
+              <ListItemIcon>
+                <LogoutIcon sx={{ fontSize: '35px' }} />
+              </ListItemIcon>
+              <ListItemText primary={'Log Out'} />
+            </ListItemButton>
+          </ListItem>
+        </List>
+        <CustomModal open={openModal} setOpen={setOpenModal} />
       </Drawer>
     </Box>
   );

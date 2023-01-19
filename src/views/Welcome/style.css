@@ -1,40 +1,119 @@
 .container {
-  width: 100vw;
-  min-height: 100vh;
-  background-image: url('../../assets/BackgroundFood.png');
-  background-color: #fe4730;
+    width: 100%;
+    height: 100ex;
+    background-image: url("../../assets/BackgroundFood.png");
+    background-color: rgba(254, 71, 48, 1);
 }
 
-.buttonRestaurant:active {
-  background-color: #fe4730;
+.container .buttonRestaurant {
+    background-color: gray;
+    color: black;
+    width: 50%;
+    pointer-events: none;
+
 }
 
-.buttonRestaurant {
-  background-color: #fff !important;
-  color: #000 !important;
-  width: 50% !important;
+.container .buttonRestaurant.active {
+    background-color: white;
+    color: black;
+    width: 50%;
+    pointer-events: initial;
+
 }
 
-.buttonRestaurant:hover {
-  background-color: rgb(213, 180, 180) !important;
-  color: #000 !important;
+.container .buttonRestaurant.active:hover {
+    background-color: rgb(213, 180, 180);
+    cursor: pointer;
+    color: black;
 }
 
-.welcome {
-  text-align: center;
-  transition: all 0.5s;
-  flex-direction: column;
+.container .welcome {
+    text-align: center;
+    transition: all 0.5s;
+    flex-direction: column;
+    margin-top: 5%;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-  color: #fff;
+.container .welcome h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+    color: rgb(255, 255, 255);
 }
 
-h2 {
-  padding-top: 4% !important;
-  font-size: 1.3em;
-  line-height: 1.1;
-  color: #000;
+
+.container .welcome h2 {
+    padding-top: 4% !important;
+    font-size: 1.3em;
+    line-height: 1.1;
+    color: #000000;
+}
+
+.container .timer {
+    display: flex;
+   justify-content: center;
+}
+
+.container .box {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-right: solid 1px rgba(255, 255, 255, 0.2);
+    border-left: solid 1px rgba(255, 255, 255, 0.2);
+    padding: 25px;
+    font-weight: 300;
+    width: 10%;
+    display: table;
+
+}
+
+.container .box p {
+    font-size: 30px;
+    margin: 0;
+
+}
+
+.container .welcome img {
+    height: 250px;
+    width: 250px;
+    object-fit: scale-down;
+}
+
+.container .welcome img.inactive {
+    animation: zoom-out 1.5s ease;
+    transform: scale(.5);
+}
+
+.container .welcome img.active {
+    animation: zoom-in 1.5s ease;
+    transform: scale(1);
+}
+
+
+@keyframes zoom-in {
+    0% {
+        transform: scale(.5);
+        opacity: 0%;
+    }
+
+    45% {
+        opacity: 100%;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+@keyframes zoom-out {
+    0% {
+        transform: scale(1);
+    }
+
+    55% {
+        opacity: 100%;
+    }
+
+    100% {
+        transform: scale(.5);
+        opacity: 0%;
+    }
 }
