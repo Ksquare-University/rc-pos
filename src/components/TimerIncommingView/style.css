@@ -1,0 +1,8 @@
+.TimerIncommingView {
+    display: flex;
+    justify-content: flex-end;
+    font-family: 'Open sans';
+    font-size: 2.6em;
+    font-weight: bold;
+    margin-right: 2em;
+}
