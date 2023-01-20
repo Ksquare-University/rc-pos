@@ -13,6 +13,7 @@ import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/config';
+import "./style.css";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -49,16 +50,8 @@ const Login: React.FC = () => {
       navigate('/home');
     }
   };
-
   return (
-    <Box
-      bgcolor='#fe4730'
-      display='flex'
-      alignItems='center'
-      justifyContent='center'
-      width='100vw'
-      minHeight='100vh'
-      >
+    <div className="login-container">
       <form 
         onSubmit={handleFormSubmit}>
         <Box
@@ -70,7 +63,6 @@ const Login: React.FC = () => {
           alignItems='center'
           margin={'auto'}
           marginBottom='5vh'
-          marginTop='5vh'
           justifyContent={'center'}
           padding={3}
           borderRadius={5}
@@ -113,7 +105,7 @@ const Login: React.FC = () => {
             onChange={handleInputChange}
             label='Email'
             required={true}
-            sx={{ maxWidth: '88%', minWidth: '20vh' }}
+            sx={{ width: '88%', minWidth: '20vh' }}
             type={'email'}
             value={inputs.email}
           />
@@ -144,7 +136,7 @@ const Login: React.FC = () => {
             onChange={handleInputChange}
             label='Password'
             required={true}
-            sx={{ maxWidth: '87%', minWidth: '20vh' }}
+            sx={{ width: '88%', minWidth: '20vh' }}
             type={passVisibility ? 'text' : 'password'}
             value={inputs.password}
           />
@@ -158,11 +150,13 @@ const Login: React.FC = () => {
               color: '#ffffff',
               backgroundColor: '#fe473c',
               margin: '3%',
-              marginTop: '5%',
               paddingBottom: '5%',
               paddingLeft: '10%',
               paddingRight: '10%',
-              paddingTop: '5%',
+              width: '88%', 
+              minWidth: '20vh',
+              padding: '5%',
+              
               ':hover': {
                 backgroundColor: '#c40013',
               },
@@ -172,8 +166,9 @@ const Login: React.FC = () => {
           </Button>
         </Box>
       </form>
-    </Box>
+    </div>
   );
+
 };
 
 export default Login;

@@ -61,7 +61,7 @@ const Welcome = () => {
   }, [restaurantsB]);
 
   const loadRestaurants = async () => {
-    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    const response = await fetch("https://gist.githubusercontent.com/IvannaNouel-Ksquare/41a13a3d7302c629b773cba43a473f35/raw/22f2e2762d80f0917b452305812e7c70a5300da4/restaurants.json");
     console.log("res>", response);
     const data = await response.json();
     console.log("data>", data);
@@ -95,13 +95,8 @@ const Welcome = () => {
       <DefaultTemplateMenu>
         <div className="welcome">
           <img src={imgs[currentImg]} alt="loading..." className={imgClass} />
-          <h1>Welcome, Restaurant name </h1>
+          <h1>Welcome, Pizza Hut </h1>
 
-          {/*  {restaurants.map((restaurant: any) => (
-            <div>
-              <h1>Welcome, Restaurant name {restaurant.id}</h1>
-            </div>
-          ))}  */}
           <ButtonControl
             nameClass={"buttonRestaurant " + buttonActive}
             label={"Open Restaurant"}
