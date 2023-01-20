@@ -42,15 +42,15 @@ export const OrderInfoContainer = ({ orderId }: Props) => {
         <div className='Container'>
             <header>
                 <div className='OrderInfo'>
-                    <p>Order id: </p>
+                    <p>Order ID: {orderId} </p>
                     <p>Date of order: </p>
                 </div>
                 <div className='CourierInfo'>
-                    <p>Courier id: </p>
+                    <p>Courier ID: </p>
                     <p>Courier name: </p>
                 </div>
                 <div className='ClientInfo'>
-                    <p>Client id:</p>
+                    <p>Client ID:</p>
                     <p>Client name:</p>
                 </div>
             </header>

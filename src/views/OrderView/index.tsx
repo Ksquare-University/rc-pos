@@ -101,7 +101,7 @@ export const OrderView = () => {
                 <header className='header'>
                     <div className='BkbttnContainer'><BackBttn handleOnClick={handleOnBack} /></div>
                     <div className='OrderTitle'>
-                        <h1>Order #{obj.orderId}</h1>
+                        <h1>Order # {orderID}</h1>
                     </div>
                 </header>
                 <main className='main'>
