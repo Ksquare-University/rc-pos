@@ -1,4 +1,5 @@
 import { Box, Button } from '@mui/material';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface Props {
   active: boolean;
@@ -19,9 +20,20 @@ const OrderSummary = ({
   orderId,
   orderStatus,
 }: Props) => {
+
+  // To navigate other parte of the app
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Routes
+  const toOrderView = location.pathname && `/orderview/${orderId}`
+
+  const handleOnClick = () => {
+    navigate(toOrderView, { replace: true });
+  }
   return (
     <div>
-      <Button
+      <Button onClick={handleOnClick}
         sx={{
           alignItems: 'flex-start',
           width: '97%',

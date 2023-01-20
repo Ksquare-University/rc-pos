@@ -6,10 +6,10 @@ import store from './store';
 const App = () => {
   return (
     <Provider store={store}>
-    <div className='App'>
-      <Router />
-    </div>
-   </Provider>
+      <div className='App'>
+        <Router />
+      </div>
+    </Provider>
   );
 };
 export default App;

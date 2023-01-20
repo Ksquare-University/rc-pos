@@ -1,13 +1,15 @@
 .ListContainer {
-    width: 97.8%;
+    width: 96%;
     height: 4em;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0.8em;
-    background-color: #ff7864;
+    background-color: #fe4730;
     color: white;
     font-family: 'Open sans';
-    border-radius: 3px;
+    border-radius: 8px;
     padding: 4px;
+    padding-left: 1vw;
+    padding-right: 1vw;
 }
