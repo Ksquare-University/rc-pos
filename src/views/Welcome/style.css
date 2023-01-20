@@ -3,6 +3,7 @@
     height: 100vh;
     background-image: url("../../assets/BackgroundFood.png");
     background-color: rgba(254, 71, 48, 1);
+    background-position: center;
 }
 
 .container .buttonRestaurant {
