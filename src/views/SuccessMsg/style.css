@@ -19,7 +19,7 @@
 }
 
 .SuccessMsg {
-    width: 60vw;
+    width: 70vw;
     height: 50vh;
     text-align: center;
 }
@@ -28,12 +28,12 @@
     font-size: 5rem;
     color: black;
     margin-bottom: 0;
-    height: 30%;
+    height: 70%;
     font-weight: normal;
 }
 
 .SuccessMsg>p {
     font-size: 2rem;
     margin-top: 0;
-    height: 70%;
+    height: 30%;
 }

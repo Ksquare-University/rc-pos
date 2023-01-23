@@ -11,6 +11,7 @@
     background-color: #F0F0F0;
     width: 100vw;
     min-height: 100vh;
+    margin: 0;
 }
 
 .header {
@@ -35,14 +36,14 @@
 }
 
 .BkbttnContainer {
-    width: 20em;
+    width: 8vw;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .OrderTitle {
-    width: 61.5em;
+    width: 83.5vw;
     display: flex;
     justify-content: center;
     align-items: center;

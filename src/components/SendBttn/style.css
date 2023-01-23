@@ -1,15 +1,13 @@
 .SendBttn.MuiButton-root {
-    width: 5rem;
-    height: 3rem;
     background-color: #ff7864;
     color: white;
-    width: 11.5rem;
-    height: 4rem;
-    border-radius: 32px;
+    width: 16vw;
+    height: 12vh;
+    border-radius: 36px;
     font-family: "Open sans";
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     text-transform: capitalize;
-    margin-top: 5rem;
+    margin-top: 10vh;
 }
 
 .SendBttn.MuiButton-root:hover {

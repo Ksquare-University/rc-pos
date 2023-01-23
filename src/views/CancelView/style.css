@@ -2,15 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60%;
+    width: 60vw;
     height: 100%;
+    border: 1px solid black;
 }
 
 .CancelContainer>h1 {
     font-family: "Spoof";
     font-size: 6em;
     font-weight: 100;
-    margin-bottom: 0.6em;
+    margin-bottom: 5vh;
 
 }
 
@@ -18,15 +19,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60%;
+    width: 60vw;
     margin-top: 0;
+    border: 1px solid black;
+
 }
 
 .CancelContainer>h1 {
     color: black;
-}
-
-.Select {
-    margin-bottom: 2em;
-    width: 35em;
 }
