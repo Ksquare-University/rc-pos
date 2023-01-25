@@ -22,7 +22,6 @@ const Welcome = () => {
 
   const [buttonActive, setButtonActive] = useState<string>("");
 
-  
   const handleOpenButton = () => {
     if (buttonActive !== "active") return;
     navigate("/orders");
@@ -56,14 +55,16 @@ const Welcome = () => {
         return newVal;
       });
     }, 1000);
+
   };
 
   return (
-    <div className="container">
+    <div className='container'>
       <DefaultTemplateMenu>
         <div className="welcome">
           <img src={imgs[currentImg]} alt="loading..." className={imgClass} />
           <h1>Welcome, {restaurantName.name} </h1>
+
           <ButtonControl
             nameClass={"buttonRestaurant " + buttonActive}
             label={"Open Restaurant"}

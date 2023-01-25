@@ -3,7 +3,7 @@
     height: 100vh;
     background-image: url("../../assets/BackgroundFood.png");
     background-color: rgba(254, 71, 48, 1);
-
+    background-position: center;
 }
 
 .container .buttonRestaurant {
@@ -39,7 +39,8 @@
     padding: 4% ;
     font-size: 3.2em;
     line-height: 1.1;
-    color: rgb(255, 255, 255);
+    color: #ffffff;
+    padding-bottom: 5%;
 }
 
 
@@ -48,6 +49,8 @@
     font-size: 1.3em;
     line-height: 1.1;
     color: #000000;
+    padding-bottom: 2%;
+
 }
 
 .container .timer {

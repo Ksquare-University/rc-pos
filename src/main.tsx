@@ -2,7 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
+import { DataContextProvider } from './context/IncommingOrderContext';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <App />
+  <React.StrictMode>
+    <DataContextProvider>
+      <App />
+    </DataContextProvider>
+  </React.StrictMode >
 )
