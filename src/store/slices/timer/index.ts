@@ -3,7 +3,11 @@ import reducers, { ITimer } from './reducer';
 
 export const timerSlice = createSlice({
   name: 'timer',
-  initialState: <ITimer> {openTime: new Date , closeTime:  new Date},
+  initialState: <ITimer>{
+    openTime: 9,
+    closeTime: 10,
+    timeExists: false
+  },
   reducers,
 });
 
