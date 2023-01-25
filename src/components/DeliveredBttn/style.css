@@ -1,15 +1,15 @@
 .Active.MuiButton-root {
-    width: 28vw;
-    height: 9VW;
-    background-color: #ff7864;
-    font-size: 25px;
+    width: 26.5vw;
+    height: 8VW;
+    background-color: #fe473c;
+    font-size: 1.5rem;
     font-weight: bold;
     font-family: "Open sans";
     text-transform: capitalize;
 }
 
 .Active.MuiButton-root:hover {
-    background: #f74024;
+    background: #c40013;
 }
 
 .Active.MuiButton-root:disabled {

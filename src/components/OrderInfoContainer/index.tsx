@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles.css'
 import ListItem from '../ListItem'
 
@@ -7,6 +7,10 @@ type Props = {
 }
 
 export const OrderInfoContainer = ({ orderId }: Props) => {
+
+    // State Variables
+    // const [itemsList, setItemsList] = useState<null[]>({})
+
     const items = [
         {
             item: "Hamburguer",
@@ -36,7 +40,24 @@ export const OrderInfoContainer = ({ orderId }: Props) => {
             quantity: 2,
             icon: "EmpanadasIcon"
         }
-    ]
+    ];
+
+    // useEffect(() => {
+    //     var url = 'https://jsonplaceholder.ir/users/1';
+
+    //     fetch(url, {
+    //         method: 'GET', // or 'PUT'
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //     }).then(res => res.json())
+    //         .catch(error => console.error('Error:', error))
+    //         .then(response => {
+    //             console.log('Success:', console.log(response))
+    //             setItemsList(response.)
+    //         });
+    // }, [])
+
     const list = items.map(items => <ListItem key={items.item} item={items.item} quantity={items.quantity} icon={items.icon} />)
     return (
         <div className='Container'>
