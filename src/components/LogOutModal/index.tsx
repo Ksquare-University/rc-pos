@@ -18,6 +18,7 @@ const CustomModal = ({ open, setOpen }: Props) => {
   const navigate = useNavigate();
 
   const handleOpenButton = () => {
+    localStorage.removeItem('token');
     navigate('/');
   };
   return (
