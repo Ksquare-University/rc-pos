@@ -4,10 +4,11 @@
 
 .react-select .react-select__control {
     border: 4px solid #d1d1d1;
-    width: 38rem;
-    height: 7rem;
+    border-radius: 8px;
+    width: 60vw;
+    height: 20vh;
     font-size: 3rem;
-    margin-top: 2rem;
+    margin-top: 4vh;
 }
 
 .react-select .react-select__control--is-focused.react-select__control--menu-is-open {

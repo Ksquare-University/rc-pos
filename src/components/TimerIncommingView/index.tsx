@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import './style.css'
 
 export const TimerIncommingView = () => {
-    const [mins, setMinutes] = useState(3);
-    const [secs, setSeconds] = useState(0);
+    const [mins, setMinutes] = useState(0);
+    const [secs, setSeconds] = useState(10);
+
     useEffect(() => {
         let sampleInterval = setInterval(() => {
             if (secs > 0) {
@@ -22,16 +23,14 @@ export const TimerIncommingView = () => {
         return () => {
             clearInterval(sampleInterval);
         };
-    });
+    })
 
     return (
         <div className='TimerIncommingView'>
-            {!(mins && secs) ? "" : (
-                <p>
-                    Declined in {"0"}
-                    {mins}:{secs < 10 ? `0${secs}` : secs}
-                </p>
-            )}
+            <p>
+                Declined in {"0"}
+                {mins}:{secs < 10 ? `0${secs}` : secs}
+            </p>
         </div>
     );
 }

@@ -97,25 +97,28 @@ export const OrderView = () => {
 
     return (
         <>
-            <div className='body'>
-                <header className='header'>
-                    <div className='BkbttnContainer'><BackBttn handleOnClick={handleOnBack} /></div>
-                    <div className='OrderTitle'>
-                        <h1>Order # {orderID}</h1>
-                    </div>
-                </header>
-                <main className='main'>
-                    <OrderInfoContainer orderId={orderID} />
-                </main>
+            <div className='bodyOrder'>
+                <div className="wrapperOrder">
+                    <header className='header'>
+                        <div className='BkbttnContainer'><BackBttn handleOnClick={handleOnBack} /></div>
+                        <div className='OrderTitle'>
+                            <h1>Order # {orderID}</h1>
+                        </div>
+                    </header>
+                    <main className='main'>
+                        <OrderInfoContainer orderId={orderID} />
+                    </main>
 
-                <footer className='footer'>
-                    <div className='ButtonsContainer'>
-                        <CancelBttn isDisabled={disabledCancelState} handleOnClick={handleOnCancel} />
-                        {button}
-                    </div>
+                    <footer className='footer'>
+                        <div className='ButtonsContainer'>
+                            <CancelBttn isDisabled={disabledCancelState} handleOnClick={handleOnCancel} />
+                            {button}
+                        </div>
 
-                </footer>
-                <IncommingOrderView state={context.isIncommingOrder} handleOnClick={handleOnNewOrderClick} />
+                    </footer>
+                    <IncommingOrderView state={context.isIncommingOrder} handleOnClick={handleOnNewOrderClick} />
+                </div>
+
             </div>
 
         </>

@@ -13,9 +13,11 @@ export const IncommingOrderView = ({ state, handleOnClick }: Props) => {
         <>
             {state &&
                 <div className='MainContainer' onClick={handleOnClick}>
-                    <p className='Order'>
-                        Accept Order
-                    </p>
+                    <div className="textContainer">
+                        <p className='Order'>
+                            Accept Order
+                        </p>
+                    </div>
                     <div className='TimerContainer'>
                         <Timer />
 
