@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles.css'
 import ListItem from '../ListItem'
 
@@ -7,37 +7,55 @@ type Props = {
 }
 
 export const OrderInfoContainer = ({ orderId }: Props) => {
-    const items = [
-        {
-            item: "Hamburguer",
-            quantity: 3,
-            icon: "HamburguerIcon"
-        },
-        {
-            item: "Hotdogs",
-            quantity: 2,
-            icon: "HotDogIcon"
-        }, {
-            item: "Quesadillas",
-            quantity: 5,
-            icon: "QuesadillasIcon"
-        },
-        {
-            item: "Panuchos",
-            quantity: 2,
-            icon: "PanuchosIcon"
-        }, {
-            item: "Salbutes",
-            quantity: 3,
-            icon: "SalbutesIcon"
-        },
-        {
-            item: "Empanadas",
-            quantity: 2,
-            icon: "EmpanadasIcon"
+
+    // State Variables
+    const [itemsList, setItemsList] = useState([])
+
+    // const items = [
+    //     {
+    //         item: "Hamburguer",
+    //         quantity: 3,
+    //         icon: "HamburguerIcon"
+    //     },
+    //     {
+    //         item: "Hotdogs",
+    //         quantity: 2,
+    //         icon: "HotDogIcon"
+    //     }, {
+    //         item: "Quesadillas",
+    //         quantity: 5,
+    //         icon: "QuesadillasIcon"
+    //     },
+    //     {
+    //         item: "Panuchos",
+    //         quantity: 2,
+    //         icon: "PanuchosIcon"
+    //     }, {
+    //         item: "Salbutes",
+    //         quantity: 3,
+    //         icon: "SalbutesIcon"
+    //     },
+    //     {
+    //         item: "Empanadas",
+    //         quantity: 2,
+    //         icon: "EmpanadasIcon"
+    //     }
+    // ];
+
+    useEffect(() => {
+        const url = 'http://localhost:3010/orderitems/2';
+
+        const fetchItemsList = async () => {
+            const req = await fetch(url);
+            const res = await req.json()
+            setItemsList(res)
+            console.log(res)
         }
-    ]
-    const list = items.map(items => <ListItem key={items.item} item={items.item} quantity={items.quantity} icon={items.icon} />)
+
+        fetchItemsList().catch(console.error)
+    }, [])
+
+    const list = itemsList.map((items: any) => <ListItem key={items.id} item={items.Item.name} quantity={items.quantity} icon={items.id} />)
     return (
         <div className='Container'>
             <header>
@@ -60,5 +78,4 @@ export const OrderInfoContainer = ({ orderId }: Props) => {
         </div>
     )
 }
-
 export default OrderInfoContainer;
