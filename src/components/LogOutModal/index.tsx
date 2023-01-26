@@ -6,11 +6,17 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
 import InfoIcon from '@mui/icons-material/Info';
 import './style.css';
+import { auth } from "../../firebase/config";
+import { signOut } from 'firebase/auth';
 
 interface Props {
   open: boolean;
   setOpen: (v: boolean) => void;
 }
+
+const logOut = () => {
+  signOut(auth);
+};
 
 const CustomModal = ({ open, setOpen }: Props) => {
   const handleClose = () => setOpen(false);
@@ -20,6 +26,7 @@ const CustomModal = ({ open, setOpen }: Props) => {
   const handleOpenButton = () => {
     localStorage.removeItem('token');
     navigate('/');
+    logOut();
   };
   return (
     <div>

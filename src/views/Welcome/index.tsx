@@ -18,9 +18,9 @@ const Welcome = () => {
   const [currentImg, setCurrentImg] = useState(0);
   const [imgClass, setImgClass] = useState("");
 
-  const [restaurantName, setRestaurantName] = React.useState<any>("");
-
   const [buttonActive, setButtonActive] = useState<string>("");
+
+  const [restaurantName, setRestaurantName] = React.useState<any>("");
 
   const handleOpenButton = () => {
     if (buttonActive !== "active") return;
@@ -55,12 +55,11 @@ const Welcome = () => {
         return newVal;
       });
     }, 1000);
-
   };
 
   return (
-    <div className='container'>
-      <DefaultTemplateMenu>
+    <div className="container">
+      <DefaultTemplateMenu isOpen={buttonActive === "active"}>
         <div className="welcome">
           <img src={imgs[currentImg]} alt="loading..." className={imgClass} />
           <h1>Welcome, {restaurantName.name} </h1>
@@ -79,8 +78,6 @@ const Welcome = () => {
             }}
           />
         </div>
-
-       
       </DefaultTemplateMenu>
     </div>
   );

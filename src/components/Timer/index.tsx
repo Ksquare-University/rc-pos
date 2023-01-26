@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { StateI } from "../../store/slices";
-import "./style.css";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { StateI } from '../../store/slices';
+import './style.css';
 
 interface Props {
   handleOpen: () => void;
@@ -16,16 +16,16 @@ export const Timer = ({ handleOpen }: Props) => {
   const [seconds, setSeconds] = useState(0);
 
   const currentTimes = {
-    opening_hour: "17:39",
-    closing_hour: "20:00",
+    opening_hour: '12:35',
+    closing_hour: '20:00',
   };
 
   const getTime = (openingDate: Date) => {
     const currentDate = new Date();
 
-    const currentTime = currentDate.toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
+    const currentTime = currentDate.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
       hour12: false,
     });
 
@@ -43,8 +43,8 @@ export const Timer = ({ handleOpen }: Props) => {
   };
 
   useEffect(() => {
-    const openHour = Number(currentTimes.opening_hour.split(":")[0]);
-    const openMinutes = Number(currentTimes.opening_hour.split(":")[1]);
+    const openHour = Number(currentTimes.opening_hour.split(':')[0]);
+    const openMinutes = Number(currentTimes.opening_hour.split(':')[1]);
 
     const openDate = new Date();
 
@@ -60,18 +60,18 @@ export const Timer = ({ handleOpen }: Props) => {
   }, []);
 
   return (
-    <div className="timer">
-      <div className="box">
+    <div className='timer'>
+      <div className='box'>
         <p>{hours}</p>
-        <span className="text">Hours</span>
+        <span className='text'>Hours</span>
       </div>
-      <div className="box">
+      <div className='box'>
         <p>{minutes}</p>
-        <span className="text">Minutes</span>
+        <span className='text'>Minutes</span>
       </div>
-      <div className="box">
+      <div className='box'>
         <p>{seconds}</p>
-        <span className="text">Seconds</span>
+        <span className='text'>Seconds</span>
       </div>
     </div>
   );

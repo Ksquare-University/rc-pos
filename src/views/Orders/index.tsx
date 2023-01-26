@@ -21,7 +21,7 @@ const Orders: React.FC = () => {
       width='100vw'
       minHeight='100vh'
     >
-      <DefaultTemplateMenu>
+      <DefaultTemplateMenu isOpen={true}>
         <Typography fontFamily={'Quicksand'} textAlign='center' variant='h3'>
           Orders
         </Typography>
