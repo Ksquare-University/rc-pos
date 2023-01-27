@@ -40,17 +40,19 @@ export const CancelView = () => {
     }
 
     return (
-        <div className='body'>
-            <header className='header'>
-                <div className='BkbttnContainer'><BackBttn handleOnClick={handleOnBack} /></div>
-            </header>
-            <main className='main'>
-                <div className='CancelContainer'>
-                    <h1>Select a reason</h1>
-                    <CancelForm />
-                </div>
-            </main>
-            <IncommingOrderView state={context.isIncommingOrder} handleOnClick={handleOnNewOrderClick} />
+        <div className='bodyCancel'>
+            <div className="wrapperCancel">
+                <header className='header'>
+                    <div className='BkbttnContainer'><BackBttn handleOnClick={handleOnBack} /></div>
+                </header>
+                <main className='main'>
+                    <div className='CancelContainer'>
+                        <h1>Select a reason</h1>
+                        <CancelForm />
+                    </div>
+                </main>
+                <IncommingOrderView state={context.isIncommingOrder} handleOnClick={handleOnNewOrderClick} />
+            </div>
         </div>
     )
 }

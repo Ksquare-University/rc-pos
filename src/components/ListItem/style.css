@@ -1,15 +1,28 @@
 .ListContainer {
-    width: 96%;
-    height: 4em;
+    width: 80vw;
+    height: 8vh;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0.8em;
-    background-color: #fe4730;
+    margin: 1vh;
+    background-color: #fe473c;
     color: white;
     font-family: 'Open sans';
     border-radius: 8px;
     padding: 4px;
     padding-left: 1vw;
     padding-right: 1vw;
+}
+
+.ListContainer>p {
+    width: calc(100%/3);
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.ListContainer>p:nth-child(2) {
+    justify-content: center;
+}
+
+.ListContainer>p:nth-child(3) {
+    justify-content: right;
 }

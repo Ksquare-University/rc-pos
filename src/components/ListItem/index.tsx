@@ -4,15 +4,15 @@ import './style.css'
 type Props = {
     item: string;
     quantity: number;
-    icon: string;
+    price: string;
 }
 
-export const ListItem = ({ item, quantity, icon }: Props) => {
+export const ListItem = ({ item, quantity, price }: Props) => {
     return (
         <div className='ListContainer'>
-            <p>Item: {item}</p>
-            <p>Quantity: {quantity}</p>
-            <img src="" alt={icon} />
+            <p>{item}</p>
+            <p>{quantity}</p>
+            <p>${price}</p>
         </div>
     )
 }
