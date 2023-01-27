@@ -1,13 +1,42 @@
-import React, { useEffect, useState } from 'react';
+/* Imports */
+import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { Box, Tab, Typography } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import OrderSummary from '../../components/OrderSummary';
 import DefaultTemplateMenu from '../../templates/DefaultTemplateMenu';
+import { useDataContext } from '../../context/IncommingOrderContext';
 
-const Orders: React.FC = () => {
+/* Orders component */
+const Orders: FC = () => {
+  const context = useDataContext();
+  /* State that stores which tab is being displayed */
   const [tab, setTab] = useState('1');
+  const [orderList, setOrderList] = useState([]);
+  const token = context.userToken;
 
-  const handleTabChange = (e: React.SyntheticEvent, newValue: string) => {
+  useEffect(() => {
+    fetchOrders();
+  }, []);
+
+  const fetchOrders = async () => {
+    try {
+      const orderListResponse = await fetch(
+        `http://localhost:3010/orders/byRestaurant/${context.restaurantId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      const orderList = await orderListResponse.json();
+
+      context.setOrdersList(orderList);
+      setOrderList(orderList);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  /* Function that handles which tab is being displayed */
+  const handleTabChange = (e: SyntheticEvent, newValue: string) => {
     setTab(newValue);
   };
 
@@ -42,13 +71,35 @@ const Orders: React.FC = () => {
             value='1'
             sx={{
               width: '85vw',
-              height: '65vh',
+              height: '70vh',
               overflow: 'scroll',
               paddingBottom: '0',
               paddingTop: '0',
               marginTop: '1vh',
             }}
           >
+            {orderList?.map((order: any) => {
+              const orderSatus = order.order_status;
+
+              if (orderSatus.id > 0 && orderSatus.id < 5) {
+                const orderDate = new Date(order.createdAt);
+                const orderDateDate = orderDate.toDateString();
+                // const orderDateDate = orderDate.toLocaleDateString();
+                const orderDateTime = orderDate.toLocaleTimeString();
+
+                return (
+                  <OrderSummary
+                    active={true}
+                    clientAddress={order.Customer.ClientAddress.address}
+                    clientName={order.Customer.full_name}
+                    courierName={order.courier.full_name}
+                    orderDate={`${orderDateDate}, ${orderDateTime}`}
+                    orderId={order.id}
+                    orderStatus={orderSatus.name}
+                  />
+                );
+              }
+            })}
             <OrderSummary
               active={true}
               clientAddress={'C 38 # 283 X 38 Y 21, PENSIONES'}
@@ -99,13 +150,35 @@ const Orders: React.FC = () => {
             value='2'
             sx={{
               width: '85vw',
-              height: '65vh',
+              height: '70vh',
               overflow: 'scroll',
               paddingBottom: '0',
               paddingTop: '0',
-              marginTop: '3vh',
+              marginTop: '1vh',
             }}
           >
+            {orderList?.map((order: any) => {
+              const orderSatus = order.order_status;
+
+              if (orderSatus.id > 4 && orderSatus.id < 7) {
+                const orderDate = new Date(order.createdAt);
+                const orderDateDate = orderDate.toDateString();
+                // const orderDateDate = orderDate.toLocaleDateString();
+                const orderDateTime = orderDate.toLocaleTimeString();
+
+                return (
+                  <OrderSummary
+                    active={true}
+                    clientAddress={order.Customer.ClientAddress.address}
+                    clientName={order.Customer.full_name}
+                    courierName={order.courier.full_name}
+                    orderDate={`${orderDateDate}, ${orderDateTime}`}
+                    orderId={order.id}
+                    orderStatus={orderSatus.name}
+                  />
+                );
+              }
+            })}
             <OrderSummary
               active={true}
               clientAddress={'C 47 # 739 X 34 Y 38, F. DE MONTEJO'}

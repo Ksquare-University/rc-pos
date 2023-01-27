@@ -20,23 +20,23 @@ const OrderSummary = ({
   orderId,
   orderStatus,
 }: Props) => {
-
-  // To navigate other parte of the app
+  // To navigate other part of the app
   const location = useLocation();
   const navigate = useNavigate();
 
   // Routes
-  const toOrderView = location.pathname && `/orderview/${orderId}`
+  const toOrderView = location.pathname && `/orderview/${orderId}`;
 
   const handleOnClick = () => {
     navigate(toOrderView, { replace: true });
-  }
+  };
   return (
     <div>
-      <Button onClick={handleOnClick}
+      <Button
+        onClick={handleOnClick}
         sx={{
           alignItems: 'flex-start',
-          width: '97%',
+          width: '97.5%',
           backgroundColor: '#fe4730',
           borderRadius: '8px',
           color: '#fff',

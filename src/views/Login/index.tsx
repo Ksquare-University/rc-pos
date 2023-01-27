@@ -13,15 +13,23 @@ import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/config';
-import "./style.css";
+import { useDataContext } from '../../context/IncommingOrderContext';
+import './style.css';
+import { useAuth } from '../../context/AuthCtx';
 
 const Login: React.FC = () => {
+  const context = useDataContext();
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
   });
+  const [invalidLoginMsg, setInvalidLoginMsg] = useState('');
+  const [invalidLoginMsgVisibility, setInvalidLoginMsgVisibility] =
+    useState(false);
+  const [loginErrorCount, setLoginErrorCount] = useState(0);
   const [passVisibility, setPassVisibility] = useState(false);
+  const { logIn } = useAuth();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs((prevState) => ({
@@ -36,24 +44,62 @@ const Login: React.FC = () => {
 
   const handleFormSubmit = async (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
+    setInvalidLoginMsgVisibility(false);
 
-    if (inputs.email.length > 4 && inputs.password.length > 6) {
-      const user = await signInWithEmailAndPassword(
-        auth,
-        inputs.email,
-        inputs.password
-      );
-
+    try {
+      const user = await logIn(inputs.email, inputs.password);
       console.log(user);
-      console.log(await user.user.getIdToken());
-      console.log(inputs);
+
+      if (!user) {
+        throw new Error('No user found');
+      }
+
+      /* const role = user.user.reloadUserInfo.customAttributes
+        .replace(/["{}]/g, '')
+        .split(':')[1];
+
+      console.log(role);
+
+      if (role !== 'owner') {
+        throw new Error('Unauthorized');
+      } */
+
+      const token = await user.user.accessToken;
+      const uid = user.user.uid;
+
+      context.setUserToken(token);
+
+      const dbUserResponse = await fetch(
+        `http://localhost:3010/manager/uid/${uid}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      const dbUser = await dbUserResponse.json();
+
+      const restaurantId = dbUser.manager.restaurant_id;
+
+      context.setRestaurantId(restaurantId);
+
       navigate('/home');
+    } catch (error) {
+      console.error(error);
+
+      if (loginErrorCount < 5) {
+        setInvalidLoginMsg('Incorrect or invalid credentials.');
+        setLoginErrorCount((prev) => prev + 1);
+      } else {
+        setInvalidLoginMsg('Too many attempts, try later.');
+        setLoginErrorCount(0);
+      }
+
+      setInvalidLoginMsgVisibility(true);
     }
   };
+
   return (
-    <div className="login-container">
-      <form 
-        onSubmit={handleFormSubmit}>
+    <div className='login-container'>
+      <form onSubmit={handleFormSubmit}>
         <Box
           bgcolor={'#f0f0f0'}
           overflow='hidden'
@@ -98,7 +144,24 @@ const Login: React.FC = () => {
             }}
           />
 
+          {invalidLoginMsgVisibility && (
+            <Box
+              border='1px solid #fe473c'
+              borderRadius='6px'
+              boxSizing={'border-box'}
+              fontSize={'small'}
+              marginBottom={'1vh'}
+              marginTop='3vh'
+              minWidth={'20vh'}
+              padding='3%'
+              width='88%'
+            >
+              {invalidLoginMsg}
+            </Box>
+          )}
+
           <TextField
+            error={invalidLoginMsgVisibility}
             id='email'
             margin='normal'
             name='email'
@@ -153,10 +216,10 @@ const Login: React.FC = () => {
               paddingBottom: '5%',
               paddingLeft: '10%',
               paddingRight: '10%',
-              width: '88%', 
+              width: '88%',
               minWidth: '20vh',
               padding: '5%',
-              
+
               ':hover': {
                 backgroundColor: '#c40013',
               },
@@ -168,7 +231,6 @@ const Login: React.FC = () => {
       </form>
     </div>
   );
-
 };
 
 export default Login;
