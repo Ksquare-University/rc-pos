@@ -47,7 +47,7 @@
 .BkbttnContainer {
     width: 8vw;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -66,8 +66,10 @@
 }
 
 .ButtonsContainer {
-    margin-top: 5em;
+    margin-top: 9vh;
     display: flex;
     justify-content: space-between;
-    width: 76em;
+    width: 80vw;
+    margin-left: 2vw;
+    margin-right: 2vw;
 }

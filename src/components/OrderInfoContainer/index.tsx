@@ -55,7 +55,7 @@ export const OrderInfoContainer = ({ orderId }: Props) => {
         fetchItemsList().catch(console.error)
     }, [])
 
-    const list = itemsList.map((items: any) => <ListItem key={items.id} item={items.Item.name} quantity={items.quantity} icon={items.id} />)
+    const list = itemsList.map((items: any) => <ListItem key={items.id} item={items.Item.name} quantity={items.quantity} price={items.Item.price} />)
     return (
         <div className='Container'>
             <header>
@@ -64,15 +64,20 @@ export const OrderInfoContainer = ({ orderId }: Props) => {
                     <p>Date of order: </p>
                 </div>
                 <div className='CourierInfo'>
-                    <p>Courier ID: </p>
+                    <p>Client name: </p>
                     <p>Courier name: </p>
                 </div>
                 <div className='ClientInfo'>
-                    <p>Client ID:</p>
-                    <p>Client name:</p>
+                    <p>Address:</p>
+                    <p>Total price: $</p>
                 </div>
             </header>
             <main>
+                <div className='ListItemsHeader'>
+                    <p>Item</p>
+                    <p>Quantity</p>
+                    <p>Price</p>
+                </div>
                 {list}
             </main>
         </div>
