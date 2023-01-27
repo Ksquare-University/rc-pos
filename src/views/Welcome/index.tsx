@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import ButtonControl from '../../components/ButtonControl';
-import DefaultTemplateMenu from '../../templates/DefaultTemplateMenu';
-import hamburger from '../../assets/hamburger.png';
-import pizza from '../../assets/pizza.png';
-import poke from '../../assets/poke.png';
-import './style.css';
-import React from 'react';
-import { Timer } from '../../components/Timer';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ButtonControl from "../../components/ButtonControl";
+import DefaultTemplateMenu from "../../templates/DefaultTemplateMenu";
+import hamburger from "../../assets/hamburger.png";
+import pizza from "../../assets/pizza.png";
+import poke from "../../assets/poke.png";
+import "./style.css";
+import React from "react";
+import { Timer } from "../../components/Timer";
 
 const imgs = [hamburger, pizza, poke];
 
