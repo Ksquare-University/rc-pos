@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import ButtonControl from "../../components/ButtonControl";
 import DefaultTemplateMenu from "../../templates/DefaultTemplateMenu";
 import hamburger from "../../assets/hamburger.png";

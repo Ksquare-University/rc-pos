@@ -8,3 +8,4 @@ export interface StateI {
 export default {
     timer,
 }
+
