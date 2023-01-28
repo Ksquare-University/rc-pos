@@ -8,6 +8,6 @@ const store = configureStore({
 
 export default store;
 
-type AppDispatch = typeof store.dispatch;
+export type AppDispatch = typeof store.dispatch;
 
 export const useAppDispatch: () => AppDispatch = useDispatch;

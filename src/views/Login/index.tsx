@@ -70,11 +70,12 @@ const Login: React.FC = () => {
       context.setUserToken(token);
 
       const dbUserResponse = await fetch(
-        `http://localhost:3010/manager/uid/${uid}`,
+        `http://localhost:5000/manager/uid/${uid}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
+
       const dbUser = await dbUserResponse.json();
 
       const restaurantId = dbUser.manager.restaurant_id;

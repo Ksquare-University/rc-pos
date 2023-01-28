@@ -21,7 +21,7 @@ const Orders: FC = () => {
   const fetchOrders = async () => {
     try {
       const orderListResponse = await fetch(
-        `http://localhost:3010/orders/byRestaurant/${context.restaurantId}`,
+        `http://localhost:5000/orders/byRestaurant/${context.restaurantId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

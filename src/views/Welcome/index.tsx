@@ -8,10 +8,13 @@ import poke from "../../assets/poke.png";
 import "./style.css";
 import React from "react";
 import { Timer } from "../../components/Timer";
+import { useDataContext } from "../../context/IncommingOrderContext";
 
 const imgs = [hamburger, pizza, poke];
 
 const Welcome = () => {
+  const context = useDataContext();
+
   const navigate = useNavigate();
 
   const [currentImg, setCurrentImg] = useState(0);
@@ -28,7 +31,7 @@ const Welcome = () => {
 
   useEffect(() => {
     const loadRestaurants = async () => {
-      const data = await fetch(`http://localhost:5000/restaurant/1`);
+      const data = await fetch(`http://localhost:5000/restaurant/${context.restaurantId}`);
       const restaurantData = await data.json();
       setRestaurantName(restaurantData);
     };

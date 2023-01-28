@@ -6,7 +6,7 @@ export interface ITimer {
   timeExists: Boolean;
 }
 const updateTimer = (state: ITimer, action: { payload: ITimer }) => {
-  return {state, action}
+  return {...state, ...action.payload}
 }
 export default {
   updateTimer,
