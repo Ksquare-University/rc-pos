@@ -68,14 +68,12 @@ const Welcome = () => {
           <div className="welcome">
             <img src={imgs[currentImg]} alt="loading..." className={imgClass} />
             <h1>Welcome, {restaurantName.name} </h1>
-
             <ButtonControl
               nameClass={"buttonRestaurant " + buttonActive}
               label={"Open Restaurant"}
               disabled={buttonActive !== "active"}
               handleClick={handleOpenButton}
             />
-
             {buttonActive !== "active" && (
               <>
                 <h2>The restaurant must open in :</h2>

@@ -33,12 +33,10 @@ export const Timer = ({ handleOpen }: Props) => {
   }, []);
 
   useEffect(() => {
-    console.log('openTime:', openTime, 'closeTime:', closeTime);
     setCurrentTimes({
       opening_hour: openTime,
       closing_hour: closeTime,
     });
-    console.log('currentTimes:', currentTimes);
   }, [openTime, closeTime]);
 
   useEffect(() => {

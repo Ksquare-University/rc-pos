@@ -10,10 +10,6 @@ export const getRestaurantTime = createAsyncThunk(
         const restData = await data.restaurant;
         const openingDays = await restData.OpeningDays;
 
-        console.log('* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *');
-        
-        console.log("openingDays>",openingDays);
-
         const currentDate = new Date();
         const currentDay = currentDate.getDay();
         const daysByNumber = [
@@ -44,26 +40,16 @@ export const getRestaurantTime = createAsyncThunk(
 const getRestaurantTimeReducer = (builder: ActionReducerMapBuilder<ITimer>) => {
     builder
 
-        .addCase(getRestaurantTime.pending,(state,action)=>{
-            console.log("cargando..");
+        .addCase(getRestaurantTime.pending, (state, action) => {
 
         })
         .addCase(getRestaurantTime.fulfilled, (state, { payload }) => {
-            console.log("f");
-            
             const { opening_hour, closing_hour } = payload;
             state.openTime = opening_hour;
             state.closeTime = closing_hour;
             state.timeExists = true;
-
-            console.log(payload, "<payload");
-
-            console.log("getRestaurantTime.fulfilled>", getRestaurantTime.fulfilled);
-
         })
         .addCase(getRestaurantTime.rejected, (state) => {
-            console.log("ffff");
-
             state.timeExists = false;
         })
 
