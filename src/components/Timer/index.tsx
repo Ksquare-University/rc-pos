@@ -99,3 +99,4 @@ export const Timer = ({ handleOpen }: Props) => {
     </div>
   );
 };
+
