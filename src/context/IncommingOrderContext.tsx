@@ -20,38 +20,22 @@ interface DataContextType {
 let DataContext = createContext<DataContextType>({} as DataContextType);
 
 export function DataContextProvider({ children }: Props) {
+
+  // State variables
   const [isIncommingOrder, setIsIncommingOrder] = useState(false);
-  const [mins, setMinutes] = useState(0);
-  const [secs, setSeconds] = useState(10);
   const [userToken, setUserToken] = useState('');
   const [restaurantId, setRestaurantId] = useState(0);
   const [ordersList, setOrdersList] = useState([{}]);
 
+  // Hook to manage the web socket that listen if there is an incomming order
   useEffect(() => {
-    socket.on('incommingOrder', (data) => {
+    socket.on('incommingOrder', () => {
       setIsIncommingOrder(true);
-      console.log(data);
 
-      let sampleInterval = setInterval(() => {
-        if (secs > 0) {
-          setSeconds(secs - 1);
-        }
-        if (secs === 0) {
-          if (mins === 0) {
-            clearInterval(sampleInterval);
-          } else {
-            setMinutes(mins - 1);
-            setSeconds(59);
-          }
-        }
-      }, 1000);
-
-      return () => {
-        clearInterval(sampleInterval);
-      };
     });
   }, [socket]);
 
+  // Values that will be availables in the context
   let value = {
     isIncommingOrder,
     setIsIncommingOrder,
@@ -66,6 +50,7 @@ export function DataContextProvider({ children }: Props) {
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 }
 
+// Custom hook to use the data of the context
 export function useDataContext() {
   return useContext(DataContext);
 }

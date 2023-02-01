@@ -82,7 +82,7 @@ const Login: React.FC = () => {
 
       context.setRestaurantId(restaurantId);
 
-      navigate('/home');
+      navigate('/orders'); ////cambiar a /home
     } catch (error) {
       console.error(error);
 

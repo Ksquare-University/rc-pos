@@ -1,6 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import './styles.css'
-import ListItem from '../ListItem'
+import React, { useEffect, useState } from 'react';
+
+// Styles
+import './styles.css';
+
+// Components
+import ListItem from '../ListItem';
+
+// Context custom hook
+import { useDataContext } from '../../context/IncommingOrderContext';
 
 type Props = {
     orderId: string;
@@ -8,68 +15,58 @@ type Props = {
 
 export const OrderInfoContainer = ({ orderId }: Props) => {
 
-    // State Variables
-    const [itemsList, setItemsList] = useState([])
+    // Bring data from the orders list using the context
+    const { ordersList } = useDataContext();
+    // Find the order by using the orderID of the clicked order
+    const found = ordersList?.find((order: any) => order.id == orderId);
+    // Get the date and format it
+    const orderDate = new Date(found?.createdAt);
+    const orderDateDate = orderDate.toDateString();
+    const orderDateTime = orderDate.toLocaleTimeString();
 
-    // const items = [
-    //     {
-    //         item: "Hamburguer",
-    //         quantity: 3,
-    //         icon: "HamburguerIcon"
-    //     },
-    //     {
-    //         item: "Hotdogs",
-    //         quantity: 2,
-    //         icon: "HotDogIcon"
-    //     }, {
-    //         item: "Quesadillas",
-    //         quantity: 5,
-    //         icon: "QuesadillasIcon"
-    //     },
-    //     {
-    //         item: "Panuchos",
-    //         quantity: 2,
-    //         icon: "PanuchosIcon"
-    //     }, {
-    //         item: "Salbutes",
-    //         quantity: 3,
-    //         icon: "SalbutesIcon"
-    //     },
-    //     {
-    //         item: "Empanadas",
-    //         quantity: 2,
-    //         icon: "EmpanadasIcon"
-    //     }
-    // ];
+    // State Variables
+    const [itemsList, setItemsList] = useState([]);
+    const [clientName, setClientName] = useState("");
+    const [courierName, setCourierName] = useState("");
+    const [address, setAddress] = useState("");
+    const [date, setDate] = useState("");
+    const [price, setPrice] = useState(0);
 
     useEffect(() => {
-        const url = 'http://localhost:3010/orderitems/2';
-
+        const url = `http://localhost:3010/orderitems/${orderId}`;
+        // Bring the the items of the selected order from the API
         const fetchItemsList = async () => {
             const req = await fetch(url);
-            const res = await req.json()
-            setItemsList(res)
-            console.log(res)
+            const res = await req.json();
+            setItemsList(res);
         }
 
-        fetchItemsList().catch(console.error)
+        fetchItemsList().catch(console.error);
+
+        setClientName(found?.Customer.full_name);
+        setCourierName(found?.courier.full_name);
+        setAddress(found?.Customer.ClientAddress.address);
+        setDate(orderDateDate.concat(" ", orderDateTime));
+        setPrice(Number());
     }, [])
 
-    const list = itemsList.map((items: any) => <ListItem key={items.id} item={items.Item.name} quantity={items.quantity} price={items.Item.price} />)
+    // Map to create the item component depending on the amunt of items of each order
+    const list = itemsList?.map((items: any) => <ListItem key={items.id} item={items.Item.name} quantity={items.quantity} price={items.Item.price} />);
+
     return (
         <div className='Container'>
             <header>
                 <div className='OrderInfo'>
                     <p>Order ID: {orderId} </p>
-                    <p>Date of order: </p>
+                    <p>Date of order: {date}</p>
                 </div>
                 <div className='CourierInfo'>
-                    <p>Client name: </p>
-                    <p>Courier name: </p>
+                    <p>Client name: {clientName} </p>
+                    <p>Courier name: {courierName} </p>
                 </div>
                 <div className='ClientInfo'>
-                    <p>Address:</p>
-                    <p>Total price: $</p>
+                    <p>Address: {address} </p>
+                    <p>Total price: ${ }</p>
                 </div>
             </header>
             <main>

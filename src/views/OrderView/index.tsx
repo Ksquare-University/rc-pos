@@ -19,43 +19,53 @@ import { useDataContext } from "../../context/IncommingOrderContext";
 import { QRCode } from "react-qr-svg";
 
 export const OrderView = () => {
-  // Related to params
-  const obj = useParams();
-  const orderID = String(obj.orderId);
+    // Related to params
+    const obj = useParams();
+    const orderID = String(obj.orderId)
 
-  // Variable to use the conditional rendering
-  let button;
+    // Variable to use the conditional rendering
+    let button;
 
-  // Variables to change the state of the class to disable the buttons
-  let disabledState = false;
-  let disabledCancelState = false;
+    // Variables to change the state of the class to disable the buttons
+    let disabledState = false;
+    let disabledCancelState = false;
 
-  // State variables
-  const [isReadyForPickUp, setIsReadyForPickUp] = useState<boolean>(false);
-  const [isDelivered, setIsDelivered] = useState<boolean>(false);
-  const [isQRScanned, setIsQRScanned] = useState<boolean>(true);
+    // State variables
+    const [isReadyForPickUp, setIsReadyForPickUp] = useState<boolean>(false);
+    const [isDelivered, setIsDelivered] = useState<boolean>(false);
+    const [isQRScanned, setIsQRScanned] = useState<boolean>(true);
 
-  // Context of the incomming order view
-  const context = useDataContext();
+    // Context of the incomming order view
+    const context = useDataContext();
 
-  // To navigate other parte of the app
-  const location = useLocation();
-  const navigate = useNavigate();
+    // To navigate other parte of the app
+    const location = useLocation();
+    const navigate = useNavigate();
 
-  // Routes
-  const toCancelView = location.pathname && `/cancelorder/${orderID}`;
-  const toOrdersView = location.pathname && `/orders`;
+    // Routes
+    const toCancelView = location.pathname && `/cancelorder/${orderID}`;
+    const toOrdersView = location.pathname && `/orders`
 
-  // Handlers
-  const handleOnBack = () => {
-    console.log("back!");
-    navigate(toOrdersView, { replace: true });
-  };
+    // Handlers
+    const handleOnBack = () => {
+        navigate(toOrdersView, { replace: true });
+    }
 
-  const handleOnCancel = () => {
-    console.log("Canceled");
-    if (isQRScanned === false || isDelivered === false) {
-      navigate(toCancelView, { replace: true });
+    const handleOnCancel = () => {
+        if (isQRScanned === false || isDelivered === false) {
+            navigate(toCancelView, { replace: true });
+        }
+    }
+
+    const handleOnPickUp = () => {
+        setIsReadyForPickUp(true)
+    }
+    const handleOnDelivered = () => {
+        setIsDelivered(true)
+    }
+
+    const handleOnNewOrderClick = () => {
+        context.setIsIncommingOrder(!context.isIncommingOrder)
     }
   };
 
