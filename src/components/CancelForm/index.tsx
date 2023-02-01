@@ -22,9 +22,9 @@ export const CancelForm = () => {
     // Options of the select input
     const options: Option[] = [
         { label: '--Select a reason--', value: '' },
-        { label: 'Option1', value: 'option1' },
-        { label: 'Option2', value: 'option2' },
-        { label: 'Option3', value: 'option3' },
+        { label: 'Depleted ingredients', value: 'option1' },
+        { label: 'Restaurant is about to close', value: 'option2' },
+        { label: 'Courier didn´t arrive', value: 'option3' },
     ]
 
     // Stuff to control the form
