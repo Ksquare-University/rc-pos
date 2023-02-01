@@ -1,14 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import reducers, { ITimer } from './reducer';
+import { extraReducersRestaurant } from './extraReducers'
 
 export const timerSlice = createSlice({
   name: 'timer',
   initialState: <ITimer>{
-    openTime: 9,
-    closeTime: 10,
+    openTime: '',
+    closeTime: '',
     timeExists: false
   },
   reducers,
+  extraReducers: extraReducersRestaurant,
 });
 
 export const { updateTimer } = timerSlice.actions;

@@ -3,47 +3,59 @@ import { ITimer } from './reducer';
 
 export const getRestaurantTime = createAsyncThunk(
     'timer/getRestaurantTime',
-    async (id: Number) => {
-        const res = await fetch(`https:localhost/5000/restaurant/owner/${id}`);
+    async (id: number) => {
+
+        const res = await fetch(`http://localhost:5000/restaurant/hours/${id}`);
         const data = await res.json();
+        const restData = await data.restaurant;
+        const openingDays = await restData.OpeningDays;
 
         const currentDate = new Date();
-
         const currentDay = currentDate.getDay();
-
         const daysByNumber = [
-            'sunday',
-            'monday',
-            'tuesday',
-            'wednesday',
-            'thursday',
-            'friday',
-            'saturday'
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday',
+            'Sunday',
         ];
 
-        const currentTimes = data.openingDays.find((times: any) => (
-            times.day.toLoweCase() === daysByNumber[currentDay]
+        const currentDayData = openingDays.find((day: { day: string; }) => (
+            day.day === daysByNumber[currentDay]
         ));
 
-        return currentTimes;
+        const currentTimes = {
+            opening_hour: currentDayData.opening_hour,
+            closing_hour: currentDayData.closing_hour,
+        };
+
+        console.log("currentTimes-2", currentTimes);
+
+        return currentTimes
     }
 );
 
 const getRestaurantTimeReducer = (builder: ActionReducerMapBuilder<ITimer>) => {
     builder
-        .addCase(getRestaurantTime.fulfilled, (state, action) => {
-            state.openTime = action.payload.opening_hour;
-            state.closeTime = action.payload.closing_hour;
+
+        .addCase(getRestaurantTime.pending, (state, action) => {
+
+        })
+        .addCase(getRestaurantTime.fulfilled, (state, { payload }) => {
+            const { opening_hour, closing_hour } = payload;
+            state.openTime = opening_hour;
+            state.closeTime = closing_hour;
             state.timeExists = true;
         })
         .addCase(getRestaurantTime.rejected, (state) => {
-           
             state.timeExists = false;
         })
 
 }
 
-
 export const extraReducersRestaurant = (builder: ActionReducerMapBuilder<ITimer>) => {
     getRestaurantTimeReducer(builder);
 }
+

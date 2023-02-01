@@ -1,6 +1,8 @@
-import { useLocation, Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from './AuthCtx';
-import { useDataContext } from './IncommingOrderContext';
+import { CircularProgress } from "@mui/material";
+import { useLocation, Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "./AuthCtx";
+import { useDataContext } from "./IncommingOrderContext";
+import './style.css';
 
 const RequireAuth = () => {
   const context = useDataContext();
@@ -8,13 +10,17 @@ const RequireAuth = () => {
   const { user, loading } = useAuth();
 
   if (loading) {
-    return <h1>Loading ....</h1>;
+    return (
+      <div className="loading">
+        <CircularProgress/>
+      </div>
+    );
   }
 
   return user && context.userToken ? (
     <Outlet />
   ) : (
-    <Navigate to={'/'} state={{ from: location }} replace />
+    <Navigate to={"/"} state={{ from: location }} replace />
   );
 };
 
