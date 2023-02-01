@@ -48,23 +48,19 @@ export const OrderView = () => {
 
     // Handlers
     const handleOnBack = () => {
-        console.log("back!");
         navigate(toOrdersView, { replace: true });
     }
 
     const handleOnCancel = () => {
-        console.log("Canceled");
         if (isQRScanned === false || isDelivered === false) {
             navigate(toCancelView, { replace: true });
         }
     }
 
     const handleOnPickUp = () => {
-        console.log("Ready for pick up");
         setIsReadyForPickUp(true)
     }
     const handleOnDelivered = () => {
-        console.log("Delivered");
         setIsDelivered(true)
     }
 
