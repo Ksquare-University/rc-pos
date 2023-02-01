@@ -5,7 +5,7 @@ export const getRestaurantTime = createAsyncThunk(
     'timer/getRestaurantTime',
     async (id: number) => {
 
-        const res = await fetch(`http://localhost:5000/restaurant/hours/${id}`);
+        const res = await fetch(`http://localhost:3010/restaurant/hours/${id}`);
         const data = await res.json();
         const restData = await data.restaurant;
         const openingDays = await restData.OpeningDays;

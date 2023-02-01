@@ -21,7 +21,7 @@ const Orders: FC = () => {
   const fetchOrders = async () => {
     try {
       const orderListResponse = await fetch(
-        `http://localhost:5000/orders/byRestaurant/${context.restaurantId}`,
+        `http://localhost:3010/orders/byRestaurant/${context.restaurantId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -30,6 +30,7 @@ const Orders: FC = () => {
 
       context.setOrdersList(orderList);
       setOrderList(orderList);
+      console.log(orderList)
     } catch (error) {
       console.error(error);
     }
@@ -51,7 +52,7 @@ const Orders: FC = () => {
       minHeight="100vh"
     >
       <DefaultTemplateMenu isOpen={true}>
-      
+
         <Typography fontFamily={"Quicksand"} textAlign="center" variant="h3">
           Orders
         </Typography>
