@@ -101,51 +101,7 @@ const Orders: FC = () => {
                 );
               }
             })}
-            <OrderSummary
-              active={true}
-              clientAddress={"C 38 # 283 X 38 Y 21, PENSIONES"}
-              clientName={"Jonathan Castillo"}
-              courierName={"Gabriel Osorno"}
-              orderDate={"19 Jan, 10:31 a.m."}
-              orderId={9813}
-              orderStatus={"Pending"}
-            />
-            <OrderSummary
-              active={true}
-              clientAddress={"C 47 # 739 X 34 Y 38, F. DE MONTEJO"}
-              clientName={"Ivanna Nouel"}
-              courierName={"Gabriel Osorno"}
-              orderDate={"19 Jan, 12:03 p.m."}
-              orderId={9814}
-              orderStatus={"Pending"}
-            />
-            <OrderSummary
-              active={true}
-              clientAddress={"C 32 # 124 X 45 Y 47, CHUBURNA"}
-              clientName={"Carlos Reyes"}
-              courierName={"Gabriel Osorno"}
-              orderDate={"19 Jan, 12:05 p.m."}
-              orderId={9815}
-              orderStatus={"Pending"}
-            />
-            <OrderSummary
-              active={true}
-              clientAddress={"C 34 # 523 X 32 Y 35, CAUCEL"}
-              clientName={"Yira Gonzalez"}
-              courierName={"Gabriel Osorno"}
-              orderDate={"19 Jan, 12:05 p.m."}
-              orderId={9816}
-              orderStatus={"Pending"}
-            />
-            <OrderSummary
-              active={true}
-              clientAddress={"C 25 # 351 X 14 Y 17, CENTRO"}
-              clientName={"Juan Fernando"}
-              courierName={"Gabriel Osorno"}
-              orderDate={"19 Jan, 12:07 p.m."}
-              orderId={9817}
-              orderStatus={"Pending"}
-            />
+            
           </TabPanel>
           <TabPanel
             value="2"

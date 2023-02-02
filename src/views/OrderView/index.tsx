@@ -19,80 +19,54 @@ import { useDataContext } from "../../context/IncommingOrderContext";
 import { QRCode } from "react-qr-svg";
 
 export const OrderView = () => {
-    // Related to params
-    const obj = useParams();
-    const orderID = String(obj.orderId)
+  // Related to params
+  const obj = useParams();
+  const orderID = String(obj.orderId);
 
-    // Variable to use the conditional rendering
-    let button;
+  // Variable to use the conditional rendering
+  let button;
 
-    // Variables to change the state of the class to disable the buttons
-    let disabledState = false;
-    let disabledCancelState = false;
+  // Variables to change the state of the class to disable the buttons
+  let disabledState = false;
+  let disabledCancelState = false;
 
-    // State variables
-    const [isReadyForPickUp, setIsReadyForPickUp] = useState<boolean>(false);
-    const [isDelivered, setIsDelivered] = useState<boolean>(false);
-    const [isQRScanned, setIsQRScanned] = useState<boolean>(true);
+  // State variables
+  const [isReadyForPickUp, setIsReadyForPickUp] = useState<boolean>(false);
+  const [isDelivered, setIsDelivered] = useState<boolean>(false);
+  const [isQRScanned, setIsQRScanned] = useState<boolean>(true);
 
-    // Context of the incomming order view
-    const context = useDataContext();
+  // Context of the incomming order view
+  const context = useDataContext();
 
-    // To navigate other parte of the app
-    const location = useLocation();
-    const navigate = useNavigate();
+  // To navigate other parte of the app
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    // Routes
-    const toCancelView = location.pathname && `/cancelorder/${orderID}`;
-    const toOrdersView = location.pathname && `/orders`
+  // Routes
+  const toCancelView = location.pathname && `/cancelorder/${orderID}`;
+  const toOrdersView = location.pathname && `/orders`;
 
-    // Handlers
-    const handleOnBack = () => {
-        navigate(toOrdersView, { replace: true });
-    }
+  // Handlers
+  const handleOnBack = () => {
+    navigate(toOrdersView, { replace: true });
+  };
 
-    const handleOnCancel = () => {
-        if (isQRScanned === false || isDelivered === false) {
-            navigate(toCancelView, { replace: true });
-        }
-    }
-
-    const handleOnPickUp = () => {
-        setIsReadyForPickUp(true)
-    }
-    const handleOnDelivered = () => {
-        setIsDelivered(true)
-    }
-
-    const handleOnNewOrderClick = () => {
-        context.setIsIncommingOrder(!context.isIncommingOrder)
+  const handleOnCancel = () => {
+    if (isQRScanned === false || isDelivered === false) {
+      navigate(toCancelView, { replace: true });
     }
   };
 
   const handleOnPickUp = () => {
-    console.log("Ready for pick up");
     setIsReadyForPickUp(true);
   };
   const handleOnDelivered = () => {
-    console.log("Delivered");
     setIsDelivered(true);
   };
 
   const handleOnNewOrderClick = () => {
     context.setIsIncommingOrder(!context.isIncommingOrder);
   };
-
-  // Conditions to change the disable state of the buttons
-  if (isDelivered === false && isQRScanned === false) {
-    disabledCancelState = false;
-    disabledState = true;
-  } else if (isDelivered === false && isQRScanned === true) {
-    disabledCancelState = false;
-    disabledState = false;
-  } else if (isDelivered === true && isQRScanned === true) {
-    disabledCancelState = true;
-    disabledState = true;
-  }
 
   // Conditional Rendering
   if (isReadyForPickUp === false) {
@@ -106,6 +80,18 @@ export const OrderView = () => {
     );
   }
 
+  //Conditions to change the disable state of the buttons
+  if (isDelivered === false && isQRScanned === false) {
+    disabledCancelState = false;
+    disabledState = true;
+  } else if (isDelivered === false && isQRScanned === true) {
+    disabledCancelState = false;
+    disabledState = false;
+  } else if (isDelivered === true && isQRScanned === true) {
+    disabledCancelState = true;
+    disabledState = true;
+  }
+
   return (
     <>
       <div className="bodyOrder">
@@ -115,11 +101,10 @@ export const OrderView = () => {
               <BackBttn handleOnClick={handleOnBack} />
             </div>
             <div className="OrderTitle">
-              
               <h1>Order # {orderID} </h1>
               <QRCode
                 level="Q"
-                style={{ padding: 10 ,width: 50 }}
+                style={{ padding: 10, width: 50 }}
                 value={JSON.stringify({ orderID })}
               />
             </div>

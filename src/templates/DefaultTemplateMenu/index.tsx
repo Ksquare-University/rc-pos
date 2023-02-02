@@ -1,16 +1,19 @@
+//...react, hooks
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
+import { SyntheticEvent } from "react";
+
+//component 
+import CustomModal from "../../components/LogOutModal";
+
+//MUI 
 import { styled } from "@mui/material/styles";
 import { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import { useNavigate } from "react-router-dom";
-import { SyntheticEvent, useState } from "react";
-
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import HomeIcon from "@mui/icons-material/Home";
 import LogoutIcon from "@mui/icons-material/Logout";
-import CustomModal from "../../components/LogOutModal";
-
 import {
   Box,
   Toolbar,
@@ -24,8 +27,11 @@ import {
   ListItemText,
 } from "@mui/material";
 
+//side menu width is defined by this variable 
 const drawerWidth = 240;
 
+
+//the side menu 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   open?: boolean;
 }>(({ theme, open }) => ({
@@ -43,12 +49,14 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   }),
 }));
 
+//interaface passed to the 'DefaultTemplateMenu'
 interface Props extends MuiAppBarProps {
   open?: boolean;
   children: React.ReactNode;
   isOpen: boolean;
 }
 
+//styles 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
@@ -57,10 +65,15 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 const DefaultTemplateMenu = ({ children, isOpen = false }: Props) => {
+
   const navigate = useNavigate();
+
+  //use states
   const [open, setOpen] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
 
+  /* handleDrawerOpen and handleDrawerClose which set the
+   value of the open state variable to true and false  */
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -69,6 +82,7 @@ const DefaultTemplateMenu = ({ children, isOpen = false }: Props) => {
     setOpen(false);
   };
 
+  //handle for the buttons inside the side menu
   const handleDrawerButtonClick = (e: SyntheticEvent) => {
     navigate(`/${e.currentTarget.id}`);
   };

@@ -5,24 +5,29 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
 import InfoIcon from '@mui/icons-material/Info';
-import './style.css';
 import { auth } from "../../firebase/config";
 import { signOut } from 'firebase/auth';
+import './style.css';
 
+
+//interface for the props of the modal 
 interface Props {
   open: boolean;
   setOpen: (v: boolean) => void;
 }
 
+//firebase logout
 const logOut = () => {
   signOut(auth);
 };
 
+//component 'CustomModal'
 const CustomModal = ({ open, setOpen }: Props) => {
   const handleClose = () => setOpen(false);
 
   const navigate = useNavigate();
 
+  //handle passed to the logout button 
   const handleOpenButton = () => {
     localStorage.removeItem('token');
     navigate('/');
