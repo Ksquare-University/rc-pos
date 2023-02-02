@@ -81,8 +81,7 @@ const Login: React.FC = () => {
       const restaurantId = dbUser.manager.restaurant_id;
 
       context.setRestaurantId(restaurantId);
-
-      navigate('/home');
+      navigate('/home'); 
     } catch (error) {
       console.error(error);
 

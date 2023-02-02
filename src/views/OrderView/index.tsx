@@ -49,7 +49,7 @@ export const OrderView = () => {
   // Handlers
   const handleOnBack = () => {
     navigate(toOrdersView, { replace: true });
-  }
+  };
 
   const handleOnCancel = () => {
     if (isQRScanned === false || isDelivered === false) {
@@ -58,29 +58,15 @@ export const OrderView = () => {
   }
 
   const handleOnPickUp = () => {
-    console.log("Ready for pick up");
     setIsReadyForPickUp(true);
   };
   const handleOnDelivered = () => {
-    console.log("Delivered");
     setIsDelivered(true);
   };
 
   const handleOnNewOrderClick = () => {
     context.setIsIncommingOrder(!context.isIncommingOrder);
   };
-
-  // Conditions to change the disable state of the buttons
-  if (isDelivered === false && isQRScanned === false) {
-    disabledCancelState = false;
-    disabledState = true;
-  } else if (isDelivered === false && isQRScanned === true) {
-    disabledCancelState = false;
-    disabledState = false;
-  } else if (isDelivered === true && isQRScanned === true) {
-    disabledCancelState = true;
-    disabledState = true;
-  }
 
   // Conditional Rendering
   if (isReadyForPickUp === false) {
@@ -94,6 +80,18 @@ export const OrderView = () => {
     );
   }
 
+  //Conditions to change the disable state of the buttons
+  if (isDelivered === false && isQRScanned === false) {
+    disabledCancelState = false;
+    disabledState = true;
+  } else if (isDelivered === false && isQRScanned === true) {
+    disabledCancelState = false;
+    disabledState = false;
+  } else if (isDelivered === true && isQRScanned === true) {
+    disabledCancelState = true;
+    disabledState = true;
+  }
+
   return (
     <>
       <div className="bodyOrder">
@@ -103,7 +101,6 @@ export const OrderView = () => {
               <BackBttn handleOnClick={handleOnBack} />
             </div>
             <div className="OrderTitle">
-
               <h1>Order # {orderID} </h1>
               <QRCode
                 level="Q"
