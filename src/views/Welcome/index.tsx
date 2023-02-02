@@ -54,7 +54,7 @@ const Welcome = () => {
   useEffect(() => {
     const loadRestaurants = async () => {
       const data = await fetch(
-        `http://localhost:5000/restaurant/${context.restaurantId}`
+        `http://localhost:3010/restaurant/${context.restaurantId}`
       );
       const restaurantData = await data.json();
       setRestaurantName(restaurantData);

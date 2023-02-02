@@ -55,7 +55,7 @@ export const OrderView = () => {
     if (isQRScanned === false || isDelivered === false) {
       navigate(toCancelView, { replace: true });
     }
-  };
+  }
 
   const handleOnPickUp = () => {
     setIsReadyForPickUp(true);
@@ -130,6 +130,7 @@ export const OrderView = () => {
       </div>
     </>
   );
+
 };
 
 export default OrderView;
