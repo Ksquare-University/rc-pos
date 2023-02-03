@@ -11,26 +11,32 @@ import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 import { useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase/config';
 import { useDataContext } from '../../context/IncommingOrderContext';
 import './style.css';
 import { useAuth } from '../../context/AuthCtx';
 
+// Login component
 const Login: React.FC = () => {
-  const context = useDataContext();
   const navigate = useNavigate();
+  // Setting initial states and variables
+  const context = useDataContext();
+  // State that stores the current input values
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
   });
+  // State that stores the current login error message
   const [invalidLoginMsg, setInvalidLoginMsg] = useState('');
+  // State that handles the visibility of the login error message
   const [invalidLoginMsgVisibility, setInvalidLoginMsgVisibility] =
     useState(false);
+  // State that stores the current login error count
   const [loginErrorCount, setLoginErrorCount] = useState(0);
+  // State that handles the visibility of the password
   const [passVisibility, setPassVisibility] = useState(false);
   const { logIn } = useAuth();
 
+  // Function that will update the state values whenever the inputs are modified
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs((prevState) => ({
       ...prevState,
@@ -38,37 +44,32 @@ const Login: React.FC = () => {
     }));
   };
 
+  // Function that handle when you click the password visibility button, to show or hide the password
   const handlePassVisibility = () => {
     setPassVisibility((prevState) => !prevState);
   };
 
+  // Function that will handle when the submit button is clicked
   const handleFormSubmit = async (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
+    // Clearing any error message
     setInvalidLoginMsgVisibility(false);
 
     try {
+      // Using context function to log in
       const user = await logIn(inputs.email, inputs.password);
-      console.log(user);
 
       if (!user) {
         throw new Error('No user found');
       }
 
-      /* const role = user.user.reloadUserInfo.customAttributes
-        .replace(/["{}]/g, '')
-        .split(':')[1];
-
-      console.log(role);
-
-      if (role !== 'owner') {
-        throw new Error('Unauthorized');
-      } */
-
       const token = await user.user.accessToken;
       const uid = user.user.uid;
 
+      // Setting context value
       context.setUserToken(token);
 
+      // Fetching the manager user
       const dbUserResponse = await fetch(
         `http://localhost:3010/manager/uid/${uid}`,
         {
@@ -77,11 +78,13 @@ const Login: React.FC = () => {
       );
 
       const dbUser = await dbUserResponse.json();
-
       const restaurantId = dbUser.manager.restaurant_id;
 
+      // Setting context value
       context.setRestaurantId(restaurantId);
-      navigate('/home'); 
+
+      // If the user log in successfully, redirect to the Home view
+      navigate('/home');
     } catch (error) {
       console.error(error);
 
@@ -93,6 +96,7 @@ const Login: React.FC = () => {
         setLoginErrorCount(0);
       }
 
+      // Setting a login error message
       setInvalidLoginMsgVisibility(true);
     }
   };

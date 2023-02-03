@@ -27,9 +27,11 @@ const OrderSummary = ({
   // Routes
   const toOrderView = location.pathname && `/orderview/${orderId}`;
 
+  // Function that will handle when you click some order
   const handleOnClick = () => {
     navigate(toOrderView, { replace: true });
   };
+
   return (
     <div>
       <Button
