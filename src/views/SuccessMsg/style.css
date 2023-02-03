@@ -1,0 +1,38 @@
+* {
+    box-sizing: content-box;
+    margin: 0;
+    padding: 0;
+}
+
+.MainContainerMsg {
+    background-color: white;
+    color: black;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    position: fixed;
+    z-index: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.SuccessMsg {
+    width: 70vw;
+    height: 50vh;
+    text-align: center;
+}
+
+.SuccessMsg>h1 {
+    font-size: 5rem;
+    color: black;
+    margin-bottom: 0;
+    height: 70%;
+    font-weight: normal;
+}
+
+.SuccessMsg>p {
+    font-size: 2rem;
+    margin-top: 0;
+    height: 30%;
+}

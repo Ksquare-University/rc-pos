@@ -1,0 +1,10 @@
+.loading{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('../../assets/BackgroundFood.png');
+    background-color: rgba(254, 71, 48, 1);
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

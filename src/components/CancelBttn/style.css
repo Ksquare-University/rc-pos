@@ -1,0 +1,21 @@
+.ActiveCancel.MuiButton-root {
+    width: 26.5vw;
+    height: 8vw;
+    background-color: white;
+    font-size: 1.4rem;
+    font-weight: bold;
+    font-family: "Open sans";
+    text-transform: capitalize;
+    color: #fe473c;
+    border: 5px solid #fe473c;
+}
+
+.ActiveCancel.MuiButton-root:hover {
+    background: #c40013;
+    border-color: #c40013;
+    color: white;
+}
+
+.ActiveCancel.MuiButton-root:disabled {
+    border-color: #bdbdbd;
+}
